@@ -85,7 +85,7 @@ curl api.dev.robostats.io/user -H "Content-type: application/json" -X POST -d '{
 > Content-Length: 46
 >
 * upload completely sent off: 46 out of 46 bytes
-< HTTP/1.1 200 OK
+< HTTP/1.1 201 Created
 < Content-Length: 3
 < Content-Type: text/plain
 < Date: Sat, 24 Jan 2015 20:37:07 GMT

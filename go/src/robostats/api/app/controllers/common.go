@@ -42,7 +42,13 @@ func (c Common) writeStatus() revel.Result {
 	return c.RenderText(http.StatusText(c.Response.Status) + "\n")
 }
 
-func (c Common) Data(data interface{}) revel.Result {
+func (c Common) dataCreated(data interface{}) revel.Result {
+	c.Response.Status = http.StatusCreated
+	c.Response.ContentType = "application/json"
+	return c.RenderJson(data)
+}
+
+func (c Common) dataGeneric(data interface{}) revel.Result {
 	c.Response.Status = http.StatusOK
 	c.Response.ContentType = "application/json"
 	return c.RenderJson(data)

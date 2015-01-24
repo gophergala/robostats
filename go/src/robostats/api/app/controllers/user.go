@@ -31,7 +31,7 @@ func (c User) Login() revel.Result {
 		return c.StatusUnauthorized()
 	}
 
-	return c.Data(userEnvelope{*u})
+	return c.dataGeneric(userEnvelope{*u})
 }
 
 func (c User) Create() revel.Result {
@@ -46,5 +46,5 @@ func (c User) Create() revel.Result {
 		return c.writeError(err)
 	}
 
-	return c.Data(userEnvelope{u.User})
+	return c.dataCreated(userEnvelope{u.User})
 }
