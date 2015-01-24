@@ -10,7 +10,7 @@ devices and test different pre-defined behaviours.
 
 ## Documentation
 
-* [API endpoints](/gophergala/robostats/tree/master/doc)
+* [API endpoints](https://github.com/gophergala/robostats/tree/master/doc)
 
 ## License
 
