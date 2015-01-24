@@ -3,7 +3,7 @@ import DS from 'ember-data';
 var DeviceSession = DS.Model.extend({
   start_at: DS.attr('date'),
   end_at: DS.attr('date'),
-  events: DS.hasMany('deviceEvent')
+  events: DS.hasMany('deviceEvent', {async: true})
 });
 
 DeviceSession.reopenClass({

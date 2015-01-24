@@ -17,8 +17,8 @@
       {{#each session in model}}
       <tr>
         <td>{{session.id}}</td>
-        <td {{action 'showEvents' session}} style="cursor:pointer">{{session.start_at}}</td>
-        <td {{action 'showEvents' session}} style="cursor:pointer">{{session.end_at}}</td>
+        <td {{action 'showEvents' session}} style="cursor:pointer">{{format-date session.start_at}}</td>
+        <td {{action 'showEvents' session}} style="cursor:pointer">{{format-date session.end_at}}</td>
       </tr>
       {{/each}}
     </tbody>

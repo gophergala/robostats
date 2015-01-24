@@ -29,7 +29,7 @@ app.import('bower_components/bootstrap-material-design/dist/js/material.js', {})
 
 app.import('bower_components/jquery-validation/dist/jquery.validate.js', {});
 app.import('bower_components/jquery-validation/src/localization/messages_es.js', {});
-app.import('vendor/moment/locale/es.js', {});
+app.import('bower_components/moment/moment.js', {});
 
 // copy assets from packages to main app tree
 var materialFont = pickFiles('bower_components/bootstrap-material-design/fonts', {
