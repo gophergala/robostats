@@ -129,6 +129,42 @@ Failed request:
 }
 ```
 
+## GET /user/:id (application/json)
+
+```
+curl localhost:9000/user/me -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X GET --verbose
+> GET /user/me HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: localhost:9000
+> Accept: */*
+> Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG
+>
+< HTTP/1.1 200 OK
+< Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+< Access-Control-Allow-Origin: *
+< Content-Length: 287
+< Content-Type: application/json
+< Date: Sat, 24 Jan 2015 23:01:14 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+{
+  "user": {
+    "id": "54c4239260d71e66d5000001",
+    "email": "user",
+    "password": "",
+    "created_at": "2015-01-24T16:58:26.63-06:00",
+    "session": {
+      "user_id": "54c4239260d71e66d5000001",
+      "token": "",
+      "created_at": "2015-01-24T16:58:45.372-06:00"
+    }
+  }
+}
+```
+
 ## Old proposal.
 
 ## /classes/create
