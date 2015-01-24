@@ -42,7 +42,6 @@ curl localhost:9000/user/login -d "email=user@example.com&password=pass" --verbo
     "email": "user@example.com",
     "created_at": "2015-01-24T14:05:29.301-06:00"
   }
-* Connection #0 to host localhost left intact
 }
 ```
 
