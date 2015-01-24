@@ -37,17 +37,9 @@ curl api.dev.robostats.io/user/login -d "email=user@example.com&password=pass" -
 < X-Xss-Protection: 1; mode=block
 <
 {
-  "user": {
-    "id": "54c3fb0960d71e4c5c000007",
-    "email": "user@example.com",
-    "password": "",
-    "created_at": "2015-01-24T14:05:29.301-06:00",
-    "session": {
-      "user_id": "54c3fb0960d71e4c5c000007",
-      "token": "fOnedIMrvjnBwlFJkOjQFqWHttnZwhhqcAWL86AH",
-      "created_at": "2015-01-24T15:35:04.9754997-06:00"
-    }
-  }
+  "access_token": "JKB54JAKcNubIwrcOlukdSQhpZE2Am1ps1tqtlfF",
+  "token_type": "bearer",
+  "user_id": "54c3fb0960d71e4c5c000007"
 }
 ```
 
@@ -95,9 +87,17 @@ curl api.dev.robostats.io/user -H "Content-type: application/json" -X POST -d '{
 < X-Xss-Protection: 1; mode=block
 <
 {
-  "access_token": "JKB54JAKcNubIwrcOlukdSQhpZE2Am1ps1tqtlfF",
-  "token_type": "bearer",
-  "user_id": "54c3fb0960d71e4c5c000007"
+  "user": {
+    "id": "54c4106160d71e5b67000003",
+    "email": "fooex",
+    "password": "",
+    "created_at": "2015-01-24T15:36:32.996882458-06:00",
+    "session": {
+      "user_id": "54c4106160d71e5b67000003",
+      "token": "2yFQe8doL2W3FptLNo5DVMxEDNOuj6NVxFM3HOB2",
+      "created_at": "2015-01-24T15:36:33.120703271-06:00"
+    }
+  }
 }
 ```
 
