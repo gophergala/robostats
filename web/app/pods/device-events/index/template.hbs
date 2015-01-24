@@ -7,14 +7,16 @@
     <thead>
       <tr>
         <th>Id</th>
-        <th>Start at</th>
-        <th>End at</th>
+        <th>Altitude</th>
+        <th>Direction</th>
       </tr>
       </thead>
     <tbody>
-      {{#each evt in model.events}}
+      {{#each evt in model}}
       <tr>
         <td>{{evt.id}}</td>
+        <td>{{evt.altitude}}</td>
+        <td>{{evt.direction}}</td>
       </tr>
       {{/each}}
     </tbody>

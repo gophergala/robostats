@@ -7,7 +7,7 @@ export default Ember.Route.extend({
 
   actions: {
     showEvents: function(session) {
-      this.transitionTo('device-events.show', session);
+      this.transitionTo('device-sessions.show', session);
     }
   }
 });
