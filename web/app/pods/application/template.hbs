@@ -1,0 +1,16 @@
+{{!#unless session.isAuthenticated}}
+{{partial 'main_nav'}}
+<div class="container">
+  <div class="row">
+    {{outlet}}
+  </div>
+</div>
+{{!/unless}}
+
+{{#if session.isAuthenticated}}
+<div class="container">
+  {{outlet}}
+</div>
+{{/if}}
+
+
