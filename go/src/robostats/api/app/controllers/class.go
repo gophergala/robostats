@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/revel/revel"
+	"gopkg.in/mgo.v2/bson"
 	"robostats/models/class"
 	"robostats/models/user"
 )
@@ -57,9 +58,22 @@ func (c Class) Index() revel.Result {
 		return c.writeError(err)
 	}
 
-	return c.dataCreated(classesEnvelope{classes})
+	return c.dataGeneric(classesEnvelope{classes})
 }
 
 func (c Class) Get() revel.Result {
-	return c.StatusUnauthorized()
+	var err error
+	var k *class.Class
+
+	id := c.Params.Get("id")
+
+	if _, err = c.requireAuthorization(); err != nil {
+		return c.StatusUnauthorized()
+	}
+
+	if k, err = class.GetByID(bson.ObjectIdHex(id)); err != nil {
+		return c.writeError(err)
+	}
+
+	return c.dataGeneric(classEnvelope{*k})
 }

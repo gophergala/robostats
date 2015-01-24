@@ -135,7 +135,7 @@ Failed request:
 curl api.dev.robostats.io/users/123 -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X GET --verbose
 > GET /user/me HTTP/1.1
 > User-Agent: curl/7.37.0
-> Host: localhost:9000
+> Host: api.dev.robostats.io
 > Accept: */*
 > Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG
 >
@@ -174,7 +174,7 @@ curl api.dev.robostats.io/device_class -H "Content-type: application/json" -H "A
 * Connected to localhost (127.0.0.1) port 9000 (#0)
 > POST /device_class HTTP/1.1
 > User-Agent: curl/7.37.0
-> Host: localhost:9000
+> Host: api.dev.robostats.io
 > Accept: */*
 > Content-type: application/json
 > Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG
@@ -206,14 +206,14 @@ curl api.dev.robostats.io/device_class -H "Content-type: application/json" -H "A
 ## GET /device_classes
 
 ```
-curl localhost:9000/device_classes -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X GET --verbose
+curl api.dev.robostats.io/device_classes -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X GET --verbose
 > GET /device_classes HTTP/1.1
 > User-Agent: curl/7.37.0
-> Host: localhost:9000
+> Host: api.dev.robostats.io
 > Accept: */*
 > Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG
 >
-< HTTP/1.1 201 Created
+< HTTP/1.1 200 OK
 < Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
 < Access-Control-Allow-Origin: *
 < Content-Length: 506
@@ -241,6 +241,38 @@ curl localhost:9000/device_classes -H "Authorization: Bearer itdXOKTP9U16B2wtgW1
       "created_at": "2015-01-24T17:24:05.128-06:00"
     }
   ]
+}
+```
+
+## GET /device_classes/:id (application/json)
+
+```
+curl api.dev.robostats.io/device_classes/54c4299560d71e6aed000002 -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X GET --verbose
+> GET /device_classes/54c4299560d71e6aed000002 HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: api.dev.robostats.io
+> Accept: */*
+> Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG
+>
+< HTTP/1.1 200 OK
+< Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+< Access-Control-Allow-Origin: *
+< Content-Length: 243
+< Content-Type: application/json
+< Date: Sat, 24 Jan 2015 23:47:50 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+{
+  "device_class": {
+    "id": "54c4299560d71e6aed000002",
+    "user_id": "54c4239260d71e66d5000001",
+    "name": "Class name",
+    "api_key": "4ZGvOWMSPN2k5M0QDneXLIGRVh2N1m4H9aXPKhKe",
+    "created_at": "2015-01-24T17:24:05.128-06:00"
+  }
 }
 ```
 

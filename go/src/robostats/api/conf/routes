@@ -15,7 +15,7 @@ GET			/users/:id                               User.Me
 
 POST		/device_class														Class.Create
 GET 		/device_classes													Class.Index
-# GET			/device_classes/:id											Class.Index
+GET			/device_classes/:id											Class.Get
 
 
 # Map static resources from the /app/public folder to the /public path
