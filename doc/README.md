@@ -17,11 +17,11 @@ See [#2](https://github.com/gophergala/robostats/issues/2).
 Successful login example:
 
 ```sh
-curl localhost:9000/user/login -d "email=user@example.com&password=pass" --verbose
+curl api.dev.robostats.io/user/login -d "email=user@example.com&password=pass" --verbose
 ...
 > POST /user/login HTTP/1.1
 > User-Agent: curl/7.37.0
-> Host: localhost:9000
+> Host: api.dev.robostats.io
 > Accept: */*
 > Content-Length: 36
 > Content-Type: application/x-www-form-urlencoded
@@ -48,7 +48,7 @@ curl localhost:9000/user/login -d "email=user@example.com&password=pass" --verbo
 Failed login example:
 
 ```sh
-curl localhost:9000/user/login -d "email=user@example.com&password=fail" --verbose
+curl api.dev.robostats.io/user/login -d "email=user@example.com&password=fail" --verbose
 ...
 < HTTP/1.1 401 Unauthorized
 < Content-Length: 13
@@ -69,11 +69,11 @@ Creates an user.
 Successful request:
 
 ```sh
-curl localhost:9000/user -H "Content-type: application/json" -X POST -d '{"user": {"email": "foo", "password": "pass"}}' --verbose
+curl api.dev.robostats.io/user -H "Content-type: application/json" -X POST -d '{"user": {"email": "foo", "password": "pass"}}' --verbose
 ...
 > POST /user HTTP/1.1
 > User-Agent: curl/7.37.0
-> Host: localhost:9000
+> Host: api.dev.robostats.io
 > Accept: */*
 > Content-type: application/json
 > Content-Length: 46
@@ -94,10 +94,10 @@ OK
 Failed request:
 
 ```sh
- curl localhost:9000/user -H "Content-type: application/json" -X POST -d '{"user": {"email": "foo", "password": "pass"}}' --verbose
+ curl api.dev.robostats.io/user -H "Content-type: application/json" -X POST -d '{"user": {"email": "foo", "password": "pass"}}' --verbose
 > POST /user HTTP/1.1
 > User-Agent: curl/7.37.0
-> Host: localhost:9000
+> Host: api.dev.robostats.io
 > Accept: */*
 > Content-type: application/json
 > Content-Length: 46
