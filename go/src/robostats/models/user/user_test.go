@@ -105,3 +105,17 @@ func TestUserLogin(t *testing.T) {
 		t.Fatal("Missing session token.")
 	}
 }
+
+func TestUserTruncateAndFillup(t *testing.T) {
+
+	UserCollection.Truncate()
+
+	u := &User{
+		Email:    "user@example.com",
+		Password: "pass",
+	}
+
+	if err := u.Create(); err != nil {
+		t.Fatal(err)
+	}
+}

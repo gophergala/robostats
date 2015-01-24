@@ -12,6 +12,61 @@ See [#2](https://github.com/gophergala/robostats/issues/2).
 
 ## API endpoints
 
+### POST /user/login (application/x-www-form-urlencoded)
+
+Successful login example:
+
+```sh
+curl localhost:9000/user/login -d "email=user@example.com&password=pass" --verbose
+...
+> POST /user/login HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: localhost:9000
+> Accept: */*
+> Content-Length: 36
+> Content-Type: application/x-www-form-urlencoded
+>
+* upload completely sent off: 36 out of 36 bytes
+< HTTP/1.1 200 OK
+< Content-Length: 140
+< Content-Type: application/json; charset=utf-8
+< Date: Sat, 24 Jan 2015 20:06:21 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+{
+  "user": {
+    "id": "54c3fb0960d71e4c5c000007",
+    "email": "user@example.com",
+    "created_at": "2015-01-24T14:05:29.301-06:00"
+  }
+* Connection #0 to host localhost left intact
+}
+```
+
+Failed login example:
+
+```sh
+curl localhost:9000/user/login -d "email=user@example.com&password=fail" --verbose
+...
+< HTTP/1.1 401 Unauthorized
+< Content-Length: 13
+< Content-Type: text/plain
+< Date: Sat, 24 Jan 2015 20:07:57 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+Unauthorized
+```
+
+## Old proposal.
+
+These endpoints were discarded.
+
 ### /user/register
 
 Adds a new user to the database.
