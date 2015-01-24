@@ -1,12 +1,13 @@
 package controllers
 
 import (
-	//"strings"
 	"encoding/json"
 	"github.com/revel/revel"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"robostats/models/user"
+	"strings"
 )
 
 type errEnvelope struct {
@@ -17,10 +18,16 @@ type Common struct {
 	*revel.Controller
 }
 
-func (c Common) requireToken() (*user.User, error) {
-	//authHeader = c.Request.Header.Get("Authorization")
-	//strings.Split(" ")
-	return nil, nil
+func (c Common) requireAuthorization() (*user.User, error) {
+	authHeader := c.Request.Header.Get("Authorization")
+	log.Printf("Got auth header: %v\n", authHeader)
+
+	chunks := strings.Split(authHeader, " ")
+
+	token := chunks[len(chunks)-1]
+	log.Printf("got token: %x\n", token)
+
+	return user.GetByToken(token)
 }
 
 func (c Common) decodeBody(dest interface{}) error {

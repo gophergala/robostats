@@ -17,6 +17,17 @@ type User struct {
 	Common
 }
 
+func (c User) Me() revel.Result {
+	var err error
+	var u *user.User
+
+	if u, err = c.requireAuthorization(); err != nil {
+		return c.StatusUnauthorized()
+	}
+
+	return c.dataGeneric(userEnvelope{*u})
+}
+
 func (c User) Login() revel.Result {
 	var email string
 	var password string
