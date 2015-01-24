@@ -1,6 +1,8 @@
 package user
 
 import (
+	"crypto/sha1"
+	"fmt"
 	"labix.org/v2/mgo/bson"
 	"robostats/errmsg"
 	"robostats/storage"
@@ -9,9 +11,15 @@ import (
 	"upper.io/i/v1/session/tokener"
 )
 
+func hash(s string) string {
+	return fmt.Sprintf(`%x`, sha1.Sum([]byte(s)))
+}
+
+// Session represents user sessions.
 type Session struct {
 	UserID    bson.ObjectId `bson:"user_id" json:"user_id"`
-	Token     string        `bson:"token" json:"token"`
+	TokenHash string        `bson:"token_hash" json:"-"`
+	Token     string        `bson:"-" json:"token"`
 	CreatedAt time.Time     `bson:"created_at" json:"created_at"`
 }
 
@@ -21,6 +29,7 @@ const (
 )
 
 var (
+	// SessionCollection is the actual storage reference for user sessions.
 	SessionCollection db.Collection
 )
 
@@ -31,8 +40,8 @@ func init() {
 // Constraint defines a compound key for session.
 func (s *Session) Constraint() db.Cond {
 	return db.Cond{
-		"token":   s.Token,
-		"user_id": s.UserID,
+		"token_hash": s.TokenHash,
+		"user_id":    s.UserID,
 	}
 }
 
@@ -47,6 +56,7 @@ func NewSession(userID bson.ObjectId) (*Session, error) {
 			s := &Session{
 				UserID:    userID,
 				Token:     token,
+				TokenHash: hash(token),
 				CreatedAt: time.Now(),
 			}
 			if _, err := SessionCollection.Append(s); err != nil {
@@ -63,11 +73,13 @@ func RetrieveSession(token string) (*Session, error) {
 	var err error
 
 	res := SessionCollection.Find(db.Cond{
-		"token": token,
+		"token_hash": hash(token),
 	})
+
 	if c, _ := res.Count(); c < 1 {
 		return nil, errmsg.ErrNoSuchSession
 	}
+
 	var s Session
 	if err = res.One(&s); err != nil {
 		return nil, err
