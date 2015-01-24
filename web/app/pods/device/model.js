@@ -12,10 +12,12 @@ Device.reopenClass({
     sessions: ["1", "2"]
   },
   {
-    id: 2
+    id: 2,
+    sessions: ["3"]
   },
   {
-    id: 3
+    id: 3,
+    sessions: ["4", "5"]
   },
   {
     id: 4

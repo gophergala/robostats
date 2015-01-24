@@ -11,13 +11,30 @@ DeviceSession.reopenClass({
   {
     id: 1,
     start_at: new Date(),
-    end_at: new Date()
+    end_at: new Date(),
+    events: ["1", "2", "3", "4"]
   },
   {
     id: 2,
     start_at: new Date(),
+    end_at: new Date(),
+    events: ["5", "6"] 
+  },
+  {
+    id: 3,
+    start_at: new Date(),
     end_at: new Date()
-  }
+  },
+  {
+    id: 4,
+    start_at: new Date(),
+    end_at: new Date()
+  },
+  {
+    id: 5,
+    start_at: new Date(),
+    end_at: new Date()
+  },
   ]
 });
 
