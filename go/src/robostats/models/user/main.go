@@ -17,7 +17,7 @@ type User struct {
 	// Basic properties.
 	ID           bson.ObjectId `bson:"_id,omitempty" json:"id"`
 	Email        string        `bson:"email" json:"email"`
-	Password     string        `bson:"-" json:"-"`
+	Password     string        `bson:"-" json:"password"`
 	PasswordHash string        `bson:"password_hash" json:"-"`
 	CreatedAt    time.Time     `bson:"created_at" json:"created_at"`
 	// Session.
@@ -122,6 +122,14 @@ func (u *User) Create() error {
 	}
 	if u.Email == "" {
 		return errmsg.ErrMissingEmail
+	}
+
+	mailExists := UserCollection.Find(db.Cond{
+		"email": u.Email,
+	})
+
+	if c, _ := mailExists.Count(); c > 0 {
+		return errmsg.ErrUserAlreadyexists
 	}
 
 	u.CreatedAt = time.Now()

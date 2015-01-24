@@ -6,9 +6,9 @@ import (
 )
 
 var (
-	ErrInvalidID  = errors.New(`Invalid ID.`)
-	ErrNoSuchItem = errors.New(`No such item.`)
-
+	ErrInvalidID           = errors.New(`Invalid ID.`)
+	ErrNoSuchItem          = errors.New(`No such item.`)
+	ErrUserAlreadyexists   = errors.New(`User already exists.`)
 	ErrNoSuchUser          = errors.New(`No such user.`)
 	ErrNoSuchSession       = errors.New(`No such session.`)
 	ErrLoginError          = errors.New(`Login error.`)

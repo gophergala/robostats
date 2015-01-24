@@ -62,6 +62,57 @@ curl localhost:9000/user/login -d "email=user@example.com&password=fail" --verbo
 Unauthorized
 ```
 
+## POST /user (application/json)
+
+```sh
+curl localhost:9000/user -H "Content-type: application/json" -X POST -d '{"user": {"email": "foo", "password": "pass"}}' --verbose
+...
+> POST /user HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: localhost:9000
+> Accept: */*
+> Content-type: application/json
+> Content-Length: 46
+>
+* upload completely sent off: 46 out of 46 bytes
+< HTTP/1.1 200 OK
+< Content-Length: 3
+< Content-Type: text/plain
+< Date: Sat, 24 Jan 2015 20:37:07 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+OK
+```
+
+```sh
+ curl localhost:9000/user -H "Content-type: application/json" -X POST -d '{"user": {"email": "foo", "password": "pass"}}' --verbose
+> POST /user HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: localhost:9000
+> Accept: */*
+> Content-type: application/json
+> Content-Length: 46
+>
+* upload completely sent off: 46 out of 46 bytes
+< HTTP/1.1 422 status code 422
+< Content-Length: 48
+< Content-Type: application/json
+< Date: Sat, 24 Jan 2015 20:40:39 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+{
+  "errors": [
+    "User already exists."
+  ]
+}
+```
+
 ## Old proposal.
 
 These endpoints were discarded.

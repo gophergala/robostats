@@ -1,12 +1,13 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/revel/revel"
 	"robostats/models/user"
 )
 
 type userEnvelope struct {
-	User *user.User `json:"user"`
+	User user.User `json:"user"`
 }
 
 type User struct {
@@ -27,5 +28,22 @@ func (c User) Login() revel.Result {
 		return c.StatusUnauthorized()
 	}
 
-	return c.Data(userEnvelope{u})
+	return c.Data(userEnvelope{*u})
+}
+
+func (c User) Create() revel.Result {
+	var u userEnvelope
+	var err error
+
+	if err = c.decodeBody(&u); err != nil {
+		c.StatusBadRequest()
+	}
+
+	if err = u.User.Create(); err != nil {
+		return c.writeError(err)
+	}
+
+	fmt.Printf("%#v\n", u)
+
+	return c.StatusOK()
 }
