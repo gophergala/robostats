@@ -6,6 +6,8 @@ connected devices.
 Robostats can also be used as a tool for sending instructions to connected
 devices and test different pre-defined behaviours.
 
+![general](https://cloud.githubusercontent.com/assets/385670/5886010/05dcfaa6-a348-11e4-8936-043dbc4f8c94.png)
+
 ## License
 
 Copyright 2015. The robostats authors.
