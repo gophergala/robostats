@@ -11,7 +11,7 @@ import (
 func Settings() db.ConnectionURL {
 	// TODO: Move this stuff to a file.
 	settings := mongo.ConnectionURL{
-		Address:  db.Host("10.9.9.9"),
+		Address:  db.Host("192.168.1.27"),
 		Database: "robostats",
 	}
 	return settings
@@ -21,7 +21,7 @@ func Settings() db.ConnectionURL {
 func C(name string) db.Collection {
 	col, err := DB().Collection(name)
 	if err != nil {
-		if err == db.ErrCollectionDoesNotExist {
+		if err != db.ErrCollectionDoesNotExist {
 			log.Fatalf("conn.C(%s): %q", name, err)
 		}
 	}
