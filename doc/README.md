@@ -21,6 +21,8 @@ Input:
 * **email**
 * **password**
 
+Output:
+
 ```json
 // Success response
 ```
@@ -33,8 +35,12 @@ Input:
 
 Exchanges a e-mail/password combination for a unique session `token`.
 
+Input:
+
 * **email**
 * **password**
+
+Output:
 
 ```json
 // Success response
@@ -48,7 +54,11 @@ Exchanges a e-mail/password combination for a unique session `token`.
 
 Returns the current user's public data.
 
+Input:
+
 * **token**
+
+Output:
 
 ```json
 // Success response
