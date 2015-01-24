@@ -13,7 +13,7 @@ POST    /user/login                             User.Login
 POST    /user                                   User.Create
 GET			/users/:id                               User.Me
 
-POST		/device_class														Class.Create
+POST		/device_classes													Class.Create
 GET 		/device_classes													Class.Index
 GET			/device_classes/:id											Class.Get
 DELETE	/device_classes/:id											Class.Remove
