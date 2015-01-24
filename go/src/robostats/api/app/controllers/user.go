@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/revel/revel"
 	"robostats/models/user"
 )
@@ -47,5 +46,5 @@ func (c User) Create() revel.Result {
 		return c.writeError(err)
 	}
 
-	return c.Data{u.User.Session}
+	return c.Data(userEnvelope{u.User})
 }
