@@ -19,7 +19,9 @@ Router.map(function() {
     this.route('show', {path: ':device_session_id'});
   });
 
-  this.resource('device-events', function(){});
+  this.resource('device-events', function(){
+    this.route("show", {path: ':device_event_id'});
+  });
 
   this.route("users", function() {
     this.route("edit");
