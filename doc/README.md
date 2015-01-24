@@ -129,10 +129,10 @@ Failed request:
 }
 ```
 
-## GET /user/:id (application/json)
+## GET /users/:id (application/json)
 
 ```
-curl api.dev.robostats.io/user/me -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X GET --verbose
+curl api.dev.robostats.io/users/123 -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X GET --verbose
 > GET /user/me HTTP/1.1
 > User-Agent: curl/7.37.0
 > Host: localhost:9000
@@ -161,6 +161,44 @@ curl api.dev.robostats.io/user/me -H "Authorization: Bearer itdXOKTP9U16B2wtgW1h
       "token": "",
       "created_at": "2015-01-24T16:58:45.372-06:00"
     }
+  }
+}
+```
+
+## POST /device_class
+
+```
+curl api.dev.robostats.io/device_class -H "Content-type: application/json" -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X POST -d '{"device_class": {"name": "Class name"}}' --verbose
+* Hostname was NOT found in DNS cache
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 9000 (#0)
+> POST /device_class HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: localhost:9000
+> Accept: */*
+> Content-type: application/json
+> Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG
+> Content-Length: 40
+>
+* upload completely sent off: 40 out of 40 bytes
+< HTTP/1.1 201 Created
+< Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+< Access-Control-Allow-Origin: *
+< Content-Length: 249
+< Content-Type: application/json
+< Date: Sat, 24 Jan 2015 23:24:05 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+{
+  "device_class": {
+    "id": "54c4299560d71e6aed000002",
+    "user_id": "54c4239260d71e66d5000001",
+    "name": "Class name",
+    "api_key": "4ZGvOWMSPN2k5M0QDneXLIGRVh2N1m4H9aXPKhKe",
+    "created_at": "2015-01-24T17:24:05.128402145-06:00"
   }
 }
 ```

@@ -11,7 +11,9 @@ GET     /favicon.ico                            404
 
 POST    /user/login                             User.Login
 POST    /user                                   User.Create
-GET			/user/:id                               User.Me
+GET			/users/:id                               User.Me
+
+POST		/device_class														Class.Create
 
 # Map static resources from the /app/public folder to the /public path
 # GET     /public/*filepath                       Static.Serve("public")

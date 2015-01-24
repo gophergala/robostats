@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/revel/revel"
 	"robostats/models/class"
+	"robostats/models/user"
 )
 
 func init() {
@@ -21,20 +22,24 @@ type Class struct {
 	Common
 }
 
-/*
 func (c Class) Create() revel.Result {
-	var c classEnvelope
 	var err error
+	var u *user.User
+	var k classEnvelope
 
-	if err = c.decodeBody(&c); err != nil {
-		c.StatusBadRequest()
+	if u, err = c.requireAuthorization(); err != nil {
+		return c.StatusUnauthorized()
 	}
 
-	if err = c.Class.Create(); err != nil {
+	if err = c.decodeBody(&k); err != nil {
+		return c.StatusBadRequest()
+	}
+
+	k.Class.UserID = u.ID
+
+	if err = k.Class.Create(); err != nil {
 		return c.writeError(err)
 	}
 
-	return c.dataCreated(classEnvelope{c.Class})
+	return c.dataCreated(classEnvelope{k.Class})
 }
-
-*/
