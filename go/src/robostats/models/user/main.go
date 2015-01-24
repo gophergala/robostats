@@ -61,7 +61,7 @@ func GetByToken(token string) (u *User, err error) {
 	return u, nil
 }
 
-// GetByID returns a user by the given ID.
+// GetByID returns an user by the given ID.
 func GetByID(id bson.ObjectId) (*User, error) {
 	var err error
 	var u User

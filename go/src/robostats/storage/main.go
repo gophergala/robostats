@@ -11,7 +11,7 @@ import (
 func Settings() db.ConnectionURL {
 	// TODO: Move this stuff to a file.
 	settings := mongo.ConnectionURL{
-		Address:  db.Host("192.168.1.27"),
+		Address:  db.Host("mongo-server"),
 		Database: "robostats",
 	}
 	return settings
