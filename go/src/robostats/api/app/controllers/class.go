@@ -15,7 +15,7 @@ type classEnvelope struct {
 }
 
 type classesEnvelope struct {
-	Classes []class.Class `json:"device_classes"`
+	Classes []*class.Class `json:"device_classes"`
 }
 
 type Class struct {
@@ -42,4 +42,24 @@ func (c Class) Create() revel.Result {
 	}
 
 	return c.dataCreated(classEnvelope{k.Class})
+}
+
+func (c Class) Index() revel.Result {
+	var err error
+	var u *user.User
+	var classes []*class.Class
+
+	if u, err = c.requireAuthorization(); err != nil {
+		return c.StatusUnauthorized()
+	}
+
+	if classes, err = class.GetByUserID(u.ID); err != nil {
+		return c.writeError(err)
+	}
+
+	return c.dataCreated(classesEnvelope{classes})
+}
+
+func (c Class) Get() revel.Result {
+	return c.StatusUnauthorized()
 }

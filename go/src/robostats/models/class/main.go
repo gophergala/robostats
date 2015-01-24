@@ -30,6 +30,30 @@ func init() {
 	ClassCollection = storage.C(classCollectionName)
 }
 
+// GetByUserID returns a class by the given ID.
+func GetByUserID(id bson.ObjectId) ([]*Class, error) {
+	var err error
+	var c []*Class
+
+	if id.Valid() == false {
+		return nil, errmsg.ErrInvalidID
+	}
+
+	res := ClassCollection.Find(db.Cond{
+		"user_id": id,
+	})
+
+	if k, _ := res.Count(); k < 1 {
+		return nil, errmsg.ErrNoSuchItem
+	}
+
+	if err = res.All(&c); err != nil {
+		return nil, err
+	}
+
+	return c, err
+}
+
 // GetByID returns a class by the given ID.
 func GetByID(id bson.ObjectId) (*Class, error) {
 	var err error

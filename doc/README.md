@@ -203,6 +203,47 @@ curl api.dev.robostats.io/device_class -H "Content-type: application/json" -H "A
 }
 ```
 
+## GET /device_classes
+
+```
+curl localhost:9000/device_classes -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X GET --verbose
+> GET /device_classes HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: localhost:9000
+> Accept: */*
+> Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG
+>
+< HTTP/1.1 201 Created
+< Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+< Access-Control-Allow-Origin: *
+< Content-Length: 506
+< Content-Type: application/json
+< Date: Sat, 24 Jan 2015 23:38:14 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+{
+  "device_classes": [
+    {
+      "id": "54c4298960d71e6aed000001",
+      "user_id": "54c4239260d71e66d5000001",
+      "name": "Class name",
+      "api_key": "KfYw0ro4sqPtACpOlj5Xyd7ohTdhU0WmCtinYEC1",
+      "created_at": "2015-01-24T17:23:53.398-06:00"
+    },
+    {
+      "id": "54c4299560d71e6aed000002",
+      "user_id": "54c4239260d71e66d5000001",
+      "name": "Class name",
+      "api_key": "4ZGvOWMSPN2k5M0QDneXLIGRVh2N1m4H9aXPKhKe",
+      "created_at": "2015-01-24T17:24:05.128-06:00"
+    }
+  ]
+}
+```
+
 ## Old proposal.
 
 ## /classes/create

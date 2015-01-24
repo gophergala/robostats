@@ -14,6 +14,9 @@ POST    /user                                   User.Create
 GET			/users/:id                               User.Me
 
 POST		/device_class														Class.Create
+GET 		/device_classes													Class.Index
+# GET			/device_classes/:id											Class.Index
+
 
 # Map static resources from the /app/public folder to the /public path
 # GET     /public/*filepath                       Static.Serve("public")
