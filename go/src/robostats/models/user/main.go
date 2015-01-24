@@ -4,10 +4,11 @@ package user
 import (
 	"code.google.com/p/go.crypto/bcrypt"
 
-	"gopkg.in/mgo.v2/bson"
 	"robostats/errmsg"
 	"robostats/storage"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
 	"upper.io/db"
 )
 

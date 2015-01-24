@@ -3,10 +3,11 @@ package user
 import (
 	"crypto/sha1"
 	"fmt"
-	"gopkg.in/mgo.v2/bson"
 	"robostats/errmsg"
 	"robostats/storage"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
 	"upper.io/db"
 	"upper.io/i/v1/session/tokener"
 )

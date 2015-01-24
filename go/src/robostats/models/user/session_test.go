@@ -1,8 +1,9 @@
 package user
 
 import (
-	"gopkg.in/mgo.v2/bson"
 	"testing"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
 var (
