@@ -64,6 +64,10 @@ Unauthorized
 
 ## POST /user (application/json)
 
+Creates an user.
+
+Successful request:
+
 ```sh
 curl localhost:9000/user -H "Content-type: application/json" -X POST -d '{"user": {"email": "foo", "password": "pass"}}' --verbose
 ...
@@ -86,6 +90,8 @@ curl localhost:9000/user -H "Content-type: application/json" -X POST -d '{"user"
 <
 OK
 ```
+
+Failed request:
 
 ```sh
  curl localhost:9000/user -H "Content-type: application/json" -X POST -d '{"user": {"email": "foo", "password": "pass"}}' --verbose
