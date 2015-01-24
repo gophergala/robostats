@@ -1,7 +1,7 @@
 package user
 
 import (
-	"labix.org/v2/mgo/bson"
+	"gopkg.in/mgo.v2/bson"
 	"testing"
 )
 
@@ -28,6 +28,10 @@ func TestSessionCreate(t *testing.T) {
 
 	if s.Token == "" {
 		t.Fatal("Token must not be empty.")
+	}
+
+	if s.TokenHash != hash(s.Token) {
+		t.Fatal("Token hash must actually match hash of token.")
 	}
 
 	// Filling for later usage.

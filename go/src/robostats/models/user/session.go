@@ -3,7 +3,7 @@ package user
 import (
 	"crypto/sha1"
 	"fmt"
-	"labix.org/v2/mgo/bson"
+	"gopkg.in/mgo.v2/bson"
 	"robostats/errmsg"
 	"robostats/storage"
 	"time"
@@ -89,7 +89,7 @@ func RetrieveSession(token string) (*Session, error) {
 
 // Remove deletes a session from the list of active sessions.
 func (s *Session) Remove() error {
-	res := SessionCollection.Find(s)
+	res := SessionCollection.Find(s.Constraint())
 
 	if c, _ := res.Count(); c < 1 {
 		return errmsg.ErrNoSuchSession
