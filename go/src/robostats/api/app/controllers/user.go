@@ -6,6 +6,10 @@ import (
 	"robostats/models/user"
 )
 
+func init() {
+	revel.InterceptFunc(addHeaderCORS, revel.AFTER, &User{})
+}
+
 type userEnvelope struct {
 	User user.User `json:"user"`
 }
