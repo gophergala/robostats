@@ -276,201 +276,26 @@ curl api.dev.robostats.io/device_classes/54c4299560d71e6aed000002 -H "Authorizat
 }
 ```
 
-## Old proposal.
+## DELETE /device_classes/:id
 
-## /classes/create
-
-Creates a class and returns the newly created public class data.
-
-Input:
-
-* **class_name**
-* **token**
-
-Output:
-
-```json
-// Success response
 ```
-
-```json
-// Error response
+curl api.dev.robostats.io/device_classes/54c4299560d71e6aed000002 -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X DELETE --verbose
+> DELETE /device_classes/54c4299560d71e6aed000002 HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: api.dev.robostats.io
+> Accept: */*
+> Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG
+>
+< HTTP/1.1 200 OK
+< Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+< Access-Control-Allow-Origin: *
+< Content-Length: 3
+< Content-Type: text/plain
+< Date: Sat, 24 Jan 2015 23:53:39 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+OK
 ```
-
-## /classes/list
-
-Returns a paginated list of classes that the active user has crated.
-
-Input:
-
-* **token**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-## /classes/remove
-
-Deletes a class that the user created.
-
-Input:
-
-* **token**
-* **class_id**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-## /classes/get
-
-Returns a class given its ID. Also returns the list of associated instances.
-
-Input:
-
-* **token**
-* **class_id**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-## /classes/instances
-
-Returns a paginated list of instances that are associated with a class.
-
-Input:
-
-* **token**
-* **class_id**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-## /classes/plot/line
-
-Returns a list of points that can be used to represent a line graph.
-
-Input:
-
-* **token**
-* **class_id**
-* **vertical**
-* **horizontal**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-## /instance/sessions
-
-Returns a paginated list of sessions that are associated with an instance.
-
-Input:
-
-* **token**
-* **instance_id**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-## /instance/plot/line
-
-Returns a list of points that can be used to represent a line graph.
-
-Input:
-
-* **token**
-* **instance_id**
-* **vertical**
-* **horizontal**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-
-## /session/events
-
-Returns a paginated list of events that are associated with a session.
-
-Input:
-
-* **token**
-* **session_id**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-## /session/plot/line
-
-Returns a list of points that can be used to represent a line graph.
-
-Input:
-
-* **token**
-* **session_id**
-* **vertical**
-* **horizontal**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-

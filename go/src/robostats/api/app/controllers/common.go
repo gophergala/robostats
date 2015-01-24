@@ -83,3 +83,8 @@ func (c Common) StatusBadRequest() revel.Result {
 	c.Response.Status = http.StatusBadRequest
 	return c.writeStatus()
 }
+
+func (c Common) statusNotFound() revel.Result {
+	c.Response.Status = http.StatusNotFound
+	return c.writeStatus()
+}

@@ -16,6 +16,7 @@ GET			/users/:id                               User.Me
 POST		/device_class														Class.Create
 GET 		/device_classes													Class.Index
 GET			/device_classes/:id											Class.Get
+DELETE	/device_classes/:id											Class.Remove
 
 
 # Map static resources from the /app/public folder to the /public path

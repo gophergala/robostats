@@ -77,3 +77,24 @@ func (c Class) Get() revel.Result {
 
 	return c.dataGeneric(classEnvelope{*k})
 }
+
+func (c Class) Remove() revel.Result {
+	var err error
+	var k *class.Class
+
+	id := c.Params.Get("id")
+
+	if _, err = c.requireAuthorization(); err != nil {
+		return c.StatusUnauthorized()
+	}
+
+	if k, err = class.GetByID(bson.ObjectIdHex(id)); err != nil {
+		return c.writeError(err)
+	}
+
+	if err = k.Remove(); err != nil {
+		return c.statusNotFound()
+	}
+
+	return c.StatusOK()
+}
