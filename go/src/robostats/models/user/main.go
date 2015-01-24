@@ -21,7 +21,7 @@ type User struct {
 	PasswordHash string        `bson:"password_hash" json:"-"`
 	CreatedAt    time.Time     `bson:"created_at" json:"created_at"`
 	// Session.
-	Session *Session `bson:"-" json:"-"`
+	Session *Session `bson:"-" json:"session,omitempty"`
 }
 
 const (

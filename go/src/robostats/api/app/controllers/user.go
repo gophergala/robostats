@@ -47,7 +47,5 @@ func (c User) Create() revel.Result {
 		return c.writeError(err)
 	}
 
-	fmt.Printf("%#v\n", u)
-
-	return c.StatusOK()
+	return c.Data{u.User.Session}
 }
