@@ -132,7 +132,7 @@ Failed request:
 ## GET /user/:id (application/json)
 
 ```
-curl localhost:9000/user/me -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X GET --verbose
+curl api.dev.robostats.io/user/me -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X GET --verbose
 > GET /user/me HTTP/1.1
 > User-Agent: curl/7.37.0
 > Host: localhost:9000
