@@ -31,7 +31,13 @@ func (c User) Login() revel.Result {
 		return c.StatusUnauthorized()
 	}
 
-	return c.dataGeneric(userEnvelope{*u})
+	data := map[string]string{
+		"access_token": u.Session.Token,
+		"user_id":      u.ID.Hex(),
+		"token_type":   "bearer",
+	}
+
+	return c.dataGeneric(data)
 }
 
 func (c User) Create() revel.Result {

@@ -95,17 +95,9 @@ curl api.dev.robostats.io/user -H "Content-type: application/json" -X POST -d '{
 < X-Xss-Protection: 1; mode=block
 <
 {
-  "user": {
-    "id": "54c4106160d71e5b67000003",
-    "email": "fooex",
-    "password": "",
-    "created_at": "2015-01-24T15:36:32.996882458-06:00",
-    "session": {
-      "user_id": "54c4106160d71e5b67000003",
-      "token": "2yFQe8doL2W3FptLNo5DVMxEDNOuj6NVxFM3HOB2",
-      "created_at": "2015-01-24T15:36:33.120703271-06:00"
-    }
-  }
+  "access_token": "JKB54JAKcNubIwrcOlukdSQhpZE2Am1ps1tqtlfF",
+  "token_type": "bearer",
+  "user_id": "54c3fb0960d71e4c5c000007"
 }
 ```
 
@@ -138,82 +130,6 @@ Failed request:
 ```
 
 ## Old proposal.
-
-These endpoints were discarded.
-
-### /user/register
-
-Adds a new user to the database.
-
-Input:
-
-* **email**
-* **password**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-### /user/login
-
-Exchanges a e-mail/password combination for a unique session `token`.
-
-Input:
-
-* **email**
-* **password**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-### /user/me
-
-Returns the current user's public data.
-
-Input:
-
-* **token**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
-
-### /user/logout
-
-Invalidates the current token.
-
-Input:
-
-* **token**
-
-Output:
-
-```json
-// Success response
-```
-
-```json
-// Error response
-```
 
 ## /classes/create
 
