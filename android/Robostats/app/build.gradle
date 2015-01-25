@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.remote.robostats.robostatsremote"
+        applicationId "com.remote.robostats.robostats"
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 1

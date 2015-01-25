@@ -1,19 +1,18 @@
 package com.remote.robostats.robostatsremote;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 
-import com.remote.robostats.robostats.R;
-
 /**
- * Created by vero on 1/24/15.
+ * Created by vero on 1/25/15.
  */
-public class UserMenuScreen extends Activity{
+public class Remote extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_menu_activity);
+        setContentView(R.layout.remote_activity);
     }
+
+
 }
