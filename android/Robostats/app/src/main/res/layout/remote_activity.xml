@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/up_button"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_below="@id/remote_ttl" />
@@ -31,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:hint="@string/down_button"
-        android:paddingTop="10dp"
+        android:paddingTop="dp"
         android:paddingBottom="10dp"
         android:layout_below="@id/up"/>
 
