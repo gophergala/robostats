@@ -474,13 +474,13 @@ curl api.dev.robostats.io/device_sessions -H "Content-type: application/json" -X
 Returns the session that matches the given ID.
 
 ```
-curl localhost:9000/device_sessions/54c4ebfe60d71e7c8400000f -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose
+curl api.dev.robostats.io/device_sessions/54c4ebfe60d71e7c8400000f -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose
 * Hostname was NOT found in DNS cache
 *   Trying 127.0.0.1...
 * Connected to localhost (127.0.0.1) port 9000 (#0)
 > GET /device_sessions/54c4ebfe60d71e7c8400000f HTTP/1.1
 > User-Agent: curl/7.37.0
-> Host: localhost:9000
+> Host: api.dev.robostats.io
 > Accept: */*
 > Content-type: application/json
 > Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071
@@ -514,13 +514,13 @@ curl localhost:9000/device_sessions/54c4ebfe60d71e7c8400000f -H "Content-type: a
 ## DELETE /device_instances/:id
 
 ```
-curl localhost:9000/device_sessions/54c4ebfe60d71e7c8400000f -H "Content-type: application/json" -X DELETE -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose
+curl api.dev.robostats.io/device_sessions/54c4ebfe60d71e7c8400000f -H "Content-type: application/json" -X DELETE -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose
 * Hostname was NOT found in DNS cache
 *   Trying 127.0.0.1...
 * Connected to localhost (127.0.0.1) port 9000 (#0)
 > DELETE /device_sessions/54c4ebfe60d71e7c8400000f HTTP/1.1
 > User-Agent: curl/7.37.0
-> Host: localhost:9000
+> Host: api.dev.robostats.io
 > Accept: */*
 > Content-type: application/json
 > Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071
@@ -538,3 +538,64 @@ curl localhost:9000/device_sessions/54c4ebfe60d71e7c8400000f -H "Content-type: a
 <
 OK
 ```
+
+## GET /device_logs
+
+Returns all logs that belong to the user.
+
+```
+curl api.dev.robostats.io/device_logs -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose
+
+> GET /device_logs HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: api.dev.robostats.io
+> Accept: */*
+> Content-type: application/json
+> Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071
+>
+  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0< HTTP/1.1 200 OK
+< Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+< Access-Control-Allow-Origin: *
+< Content-Type: application/json
+< Date: Sun, 25 Jan 2015 13:50:48 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+< Transfer-Encoding: chunked
+<
+
+{
+  "deviceLogs": [
+    {
+      "id": "54c4ebfe60d71e7c84000019",
+      "user_id": "54c4ebfe60d71e7c84000001",
+      "class_id": "54c4ebfe60d71e7c84000003",
+      "instance_id": "54c4ebfe60d71e7c8400000c",
+      "session_id": "54c4ebfe60d71e7c84000012",
+      "data": null,
+      "local_time": 0,
+      "latlng": [
+        18.75536,
+        -98.67731
+      ],
+      "created_at": "2015-01-25T07:13:34.887-06:00"
+    },
+    {
+      "id": "54c4ebfe60d71e7c8400001a",
+      "user_id": "54c4ebfe60d71e7c84000001",
+      "class_id": "54c4ebfe60d71e7c84000005",
+      "instance_id": "54c4ebfe60d71e7c8400000d",
+      "session_id": "54c4ebfe60d71e7c84000011",
+      "data": null,
+      "local_time": 1,
+      "latlng": [
+        19.97565,
+        -99.20467000000001
+      ],
+      "created_at": "2015-01-25T07:13:34.887-06:00"
+    }
+	]
+}
+```
+
