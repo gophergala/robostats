@@ -1,14 +1,10 @@
 # Robotstats
 
-## Data types
+This is the internal documentation for Robostats.
 
-This is a diagram of the data entities we think we'll use:
+## ERD
 
-![erd](https://cloud.githubusercontent.com/assets/385670/5886012/1402d5b0-a348-11e4-8482-eea04c5a1875.png)
-
-## Basic API rules
-
-See [#2](https://github.com/gophergala/robostats/issues/2).
+![erd](https://cloud.githubusercontent.com/assets/385670/5893746/ad786f70-a4b5-11e4-8cf9-5ef50a01de7c.png)
 
 ## API endpoints
 

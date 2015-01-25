@@ -4,9 +4,27 @@ Robotstats is a platform to gather and display statistics for robots and other
 connected devices.
 
 Robostats can also be used as a remote control to send signals to connected
-devices, so you can alter the behaviour of your robots and get feedback.
+devices of the same kind, when a device receives this signal it can alter its
+behaviour.
 
 ![general](https://cloud.githubusercontent.com/assets/385670/5893726/9ff493ac-a4b4-11e4-8a94-d769a9d0efea.png)
+
+## The API
+
+The Robostats API provides tools for creating categories for your devices (or
+robot *classes*) to which new robots can add themselves, each class has an API
+key.
+
+* Classes
+* Instances
+* Sessions
+* Events
+
+## Client package
+
+## Panel for analytics
+
+## Remote control
 
 ## Internal documentation
 
