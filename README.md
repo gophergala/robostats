@@ -1,14 +1,14 @@
 # Robostats
 
-Robostats is a platform that displays statistics for robots and other connected
-devices.
+Robotstats is a platform to gather and display statistics for robots and other
+connected devices.
 
-Robostats can also be used as a tool for sending instructions to connected
-devices and test different pre-defined behaviours.
+Robostats can also be used as a remote control to send signals to connected
+devices, so you can alter the behaviour of your robots and get feedback.
 
-![general](https://cloud.githubusercontent.com/assets/385670/5886010/05dcfaa6-a348-11e4-8936-043dbc4f8c94.png)
+![general](https://cloud.githubusercontent.com/assets/385670/5893726/9ff493ac-a4b4-11e4-8a94-d769a9d0efea.png)
 
-## Documentation
+## Internal documentation
 
 * [API endpoints](https://github.com/gophergala/robostats/tree/master/doc)
 
