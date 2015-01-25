@@ -5,10 +5,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 const (
@@ -21,6 +21,7 @@ const (
 	deviceClassIndexEndpoint    = endpointPrefix + "/device_classes"
 	deviceInstanceIndexEndpoint = endpointPrefix + "/device_instances"
 	deviceSessionIndexEndpoint  = endpointPrefix + "/device_sessions"
+	deviceEventIndexEndpoint    = endpointPrefix + "/device_events"
 )
 
 const (
@@ -50,8 +51,6 @@ func decodeBody(res *http.Response, dest interface{}) error {
 	if buf, err = ioutil.ReadAll(res.Body); err != nil {
 		return err
 	}
-
-	log.Printf("bGOT: %v\n", string(buf))
 
 	if err := json.Unmarshal(buf, &dest); err != nil {
 		return err
@@ -200,10 +199,38 @@ func (c *Client) RegisterInstance(classID string, data interface{}) (*Instance, 
 	return &dest.Instance, nil
 }
 
-func (c *Client) RegisterSession() error {
-	return nil
+func (c *Client) RegisterSession(instanceID string, data interface{}) (*Session, error) {
+	var dest sessionEnvelope
+
+	session := Session{
+		InstanceID: instanceID,
+		StartTime:  time.Now(),
+		Data:       data,
+	}
+
+	if err := c.signedPost(deviceSessionIndexEndpoint, sessionEnvelope{session}, &dest); err != nil {
+		return nil, err
+	}
+
+	dest.Session.client = c
+
+	return &dest.Session, nil
 }
 
-func (c *Client) PushEvent() error {
-	return nil
+func (s *Session) PushEvent(data interface{}) (*Event, error) {
+	var dest eventEnvelope
+
+	s.internalTime++
+
+	event := Event{
+		SessionID: s.ID,
+		Data:      data,
+		LocalTime: s.internalTime,
+	}
+
+	if err := s.client.signedPost(deviceEventIndexEndpoint, eventEnvelope{event}, &dest); err != nil {
+		return nil, err
+	}
+
+	return &dest.Event, nil
 }

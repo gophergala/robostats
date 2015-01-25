@@ -5,15 +5,18 @@ import (
 )
 
 type Session struct {
-	ID         string      `json:"id"`
-	UserID     string      `json:"user_id"`
-	ClassID    string      `json:"class_id"`
+	ID         string      `json:"id,omitempty"`
+	UserID     string      `json:"user_id,omitempty"`
+	ClassID    string      `json:"class_id,omitempty"`
 	InstanceID string      `json:"instance_id"`
-	SessionKey string      `json:"session_key"`
-	Data       interface{} `json:"user_data"`
+	SessionKey string      `json:"session_key,omitempty"`
+	Data       interface{} `json:"user_data,omitempty"`
 	StartTime  time.Time   `json:"start_time"`
-	EndTime    time.Time   `json:"end_time"`
-	CreatedAt  time.Time   `json:"created_at"`
+	EndTime    time.Time   `json:"end_time,omitempty"`
+	CreatedAt  time.Time   `json:"created_at,omitempty"`
+
+	internalTime int
+	client       *Client
 }
 
 type sessionEnvelope struct {

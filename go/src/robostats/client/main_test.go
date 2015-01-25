@@ -24,9 +24,24 @@ func TestClientLogin(t *testing.T) {
 
 	for _, class := range classes {
 		// Add new instance
-		if _, err = client.RegisterInstance(class.ID, map[string]string{"foo": "bar"}); err != nil {
+		var i *Instance
+		if i, err = client.RegisterInstance(class.ID, map[string]string{"foo": "bar"}); err != nil {
 			t.Fatal(err)
 		}
+
+		// Add new session to new instance
+		var s *Session
+		if s, err = client.RegisterSession(i.ID, map[string]string{"nuff": "said"}); err != nil {
+			t.Fatal(err)
+		}
+
+		// Push an event.
+		var e *Event
+		if e, err = s.PushEvent(map[string]float64{"cpu": 0.1227}); err != nil {
+			t.Fatal(err)
+		}
+
+		log.Printf("Event added: %v\n", e)
 
 		// List instances.
 		var instances []Instance
@@ -38,7 +53,7 @@ func TestClientLogin(t *testing.T) {
 			if sessions, err = client.GetSessionsByInstanceID(instance.ID); err != nil {
 				t.Log(err)
 			}
-			log.Printf("sessions: %v\n", sessions)
+			log.Printf("Active sessions: %d\n", len(sessions))
 		}
 	}
 
