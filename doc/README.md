@@ -603,7 +603,12 @@ curl api.dev.robostats.io/device_events -H "Content-type: application/json" -X G
 }
 ```
 
-## GET /devi
+## GET /device_sessions/time_series
+
+Required parameters:
+
+* session_id
+* key[]
 
 ```
 curl 'api.dev.robostats.io/device_sessions/time_series?session_id=54c542d612fa74250100000f&key\[\]=cpu' -X GET -H "Authorization: Bearer W7wDOMQ4ytC0hfI76r3HdBOGSoiZ1lB01vNOLx8T"  --verbose
