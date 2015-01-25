@@ -18,6 +18,10 @@ GET 		/device_classes													Class.Index
 GET			/device_classes/:id											Class.Get
 DELETE	/device_classes/:id											Class.Remove
 
+GET			/device_instances												Instance.Index
+GET			/device_instances/:id										Instance.Get
+DELETE	/device_instances/:id										Instance.Remove
+
 
 # Map static resources from the /app/public folder to the /public path
 # GET     /public/*filepath                       Static.Serve("public")

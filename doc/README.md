@@ -299,3 +299,119 @@ curl api.dev.robostats.io/device_classes/54c4299560d71e6aed000002 -H "Authorizat
 <
 OK
 ```
+
+## GET /device_instances
+
+Returns all instances that belong to the user.
+
+```
+curl api.dev.robostats.io/device_instances -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071"
+> GET /device_instances HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: api.dev.robostats.io
+> Accept: */*
+> Content-type: application/json
+> Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071
+>
+< HTTP/1.1 200 OK
+< Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+< Access-Control-Allow-Origin: *
+< Content-Length: 1314
+< Content-Type: application/json
+< Date: Sun, 25 Jan 2015 13:35:47 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+
+{
+  "deviceInstances": [
+    {
+      "id": "54c4ebfe60d71e7c8400000a",
+      "user_id": "54c4ebfe60d71e7c84000001",
+      "class_id": "54c4ebfe60d71e7c84000008",
+      "data": {
+        "serial_number": "VQYM1RI5"
+      },
+      "created_at": "2015-01-25T07:13:34.881-06:00"
+    },
+    {
+      "id": "54c4ebfe60d71e7c8400000b",
+      "user_id": "54c4ebfe60d71e7c84000001",
+      "class_id": "54c4ebfe60d71e7c84000004",
+      "data": {
+        "serial_number": "BSF4IM9W"
+      },
+      "created_at": "2015-01-25T07:13:34.882-06:00"
+    }
+  ]
+}
+```
+
+## GET /device_instances/:id
+
+Returns the instance that matches the given ID.
+
+```
+curl api.dev.robostats.io/device_instances/54c4ebfe60d71e7c8400000e -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose 2>log.txt
+> GET /device_instances/54c4ebfe60d71e7c8400000e HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: api.dev.robostats.io
+> Accept: */*
+> Content-type: application/json
+> Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071
+>
+< HTTP/1.1 200 OK
+< Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+< Access-Control-Allow-Origin: *
+< Content-Length: 259
+< Content-Type: application/json
+< Date: Sun, 25 Jan 2015 13:37:47 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+
+{
+  "deviceInstance": {
+    "id": "54c4ebfe60d71e7c8400000e",
+    "user_id": "54c4ebfe60d71e7c84000001",
+    "class_id": "54c4ebfe60d71e7c84000003",
+    "data": {
+      "serial_number": "HZXTL9LS"
+    },
+    "created_at": "2015-01-25T07:13:34.883-06:00"
+  }
+}
+```
+
+## DELETE /device_instances/:id
+
+Removes the instance that matches the given ID.
+
+```
+curl api.dev.robostats.io/device_instances/54c4ebfe60d71e7c8400000e -H "Content-type: application/json" -X DELETE -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose
+* Hostname was NOT found in DNS cache
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 9000 (#0)
+> DELETE /device_instances/54c4ebfe60d71e7c8400000e HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: api.dev.robostats.io
+> Accept: */*
+> Content-type: application/json
+> Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071
+>
+< HTTP/1.1 200 OK
+< Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+< Access-Control-Allow-Origin: *
+< Content-Length: 3
+< Content-Type: text/plain
+< Date: Sun, 25 Jan 2015 13:38:24 GMT
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+<
+OK
+```
