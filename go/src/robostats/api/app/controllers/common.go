@@ -38,6 +38,8 @@ func (c Common) decodeBody(dest interface{}) error {
 		return err
 	}
 
+	log.Printf("got: %s\n", string(buf))
+
 	if err := json.Unmarshal(buf, &dest); err != nil {
 		return err
 	}
@@ -49,6 +51,7 @@ func (c Common) writeError(err error) revel.Result {
 	c.Response.Status = 422
 	c.Response.ContentType = "application/json"
 	data := errEnvelope{[]string{err.Error()}}
+	log.Printf("app error: %q", err)
 	return c.RenderJson(data)
 }
 

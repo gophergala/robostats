@@ -165,14 +165,14 @@ curl api.dev.robostats.io/users/123 -H "Authorization: Bearer itdXOKTP9U16B2wtgW
 }
 ```
 
-## POST /device_class
+## POST /device_classes
 
 ```
-curl api.dev.robostats.io/device_class -H "Content-type: application/json" -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X POST -d '{"device_class": {"name": "Class name"}}' --verbose
+curl api.dev.robostats.io/device_classes -H "Content-type: application/json" -H "Authorization: Bearer itdXOKTP9U16B2wtgW1hgpMp0xHKfAkjkCSBKwSG" -X POST -d '{"device_classes": {"name": "Class name"}}' --verbose
 * Hostname was NOT found in DNS cache
 *   Trying 127.0.0.1...
 * Connected to localhost (127.0.0.1) port 9000 (#0)
-> POST /device_class HTTP/1.1
+> POST /device_classes HTTP/1.1
 > User-Agent: curl/7.37.0
 > Host: api.dev.robostats.io
 > Accept: */*

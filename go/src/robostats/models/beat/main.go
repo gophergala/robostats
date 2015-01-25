@@ -16,7 +16,7 @@ type Beat struct {
 	SessionID  bson.ObjectId `bson:"session_id" json:"session_id"`
 	Data       interface{}   `bson:"data" json:"data"`
 	LocalTime  int           `bson:"local_time" json:"local_time"`
-	LatLng     []float64     `bson:"latlng"`
+	LatLng     [2]float64    `bson:"latlng"`
 	CreatedAt  time.Time     `bson:"created_at" json:"created_at"`
 }
 

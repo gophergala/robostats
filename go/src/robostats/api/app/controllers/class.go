@@ -12,11 +12,11 @@ func init() {
 }
 
 type classEnvelope struct {
-	Class class.Class `json:"device_class"`
+	Class class.Class `json:"deviceClass"`
 }
 
 type classesEnvelope struct {
-	Classes []*class.Class `json:"device_classes"`
+	Classes []*class.Class `json:"deviceClasses"`
 }
 
 type Class struct {
