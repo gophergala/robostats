@@ -12,7 +12,7 @@ type Instance struct {
 	ID        bson.ObjectId `bson:"_id,omitempty" json:"id"`
 	UserID    bson.ObjectId `bson:"user_id" json:"user_id"`
 	ClassID   bson.ObjectId `bson:"class_id" json:"class_id"`
-	Data      interface{}   `bson:"data" json:"data"`
+	Data      interface{}   `bson:"data" json:"user_data"`
 	CreatedAt time.Time     `bson:"created_at" json:"created_at"`
 }
 

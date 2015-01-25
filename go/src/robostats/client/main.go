@@ -2,15 +2,18 @@
 package client
 
 import (
+	"bytes"
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 const (
-	endpointPrefix = "http://api.dev.robostats.io"
+	//endpointPrefix = "http://api.dev.robostats.io"
+	endpointPrefix = "http://localhost:9000"
 )
 
 const (
@@ -22,6 +25,7 @@ const (
 
 const (
 	MethodPost = "POST"
+	MethodGet  = "GET"
 )
 
 type Authorization struct {
@@ -46,6 +50,8 @@ func decodeBody(res *http.Response, dest interface{}) error {
 	if buf, err = ioutil.ReadAll(res.Body); err != nil {
 		return err
 	}
+
+	log.Printf("bGOT: %v\n", string(buf))
 
 	if err := json.Unmarshal(buf, &dest); err != nil {
 		return err
@@ -78,6 +84,43 @@ func (c *Client) signRequest(req *http.Request) {
 	req.Header.Add("Authorization", c.Auth.authHeader())
 }
 
+func (c *Client) signedPost(endpoint string, data interface{}, dest interface{}) error {
+	var req *http.Request
+	var res *http.Response
+
+	var message []byte
+	var err error
+
+	if message, err = json.Marshal(data); err != nil {
+		return err
+	}
+
+	buf := bytes.NewBuffer(message)
+
+	if req, err = http.NewRequest(MethodPost, endpoint, buf); err != nil {
+		return err
+	}
+
+	req.Header.Set("Content-Type", "application/json; charset=UTF-8")
+
+	c.signRequest(req)
+
+	cli := http.Client{}
+
+	if res, err = cli.Do(req); err != nil {
+		return err
+	}
+
+	if dest != nil {
+		if err = decodeBody(res, dest); err != nil {
+			return err
+		}
+	}
+
+	return nil
+
+}
+
 func (c *Client) signedGet(endpoint string, values url.Values, dest interface{}) error {
 	var req *http.Request
 	var res *http.Response
@@ -93,7 +136,7 @@ func (c *Client) signedGet(endpoint string, values url.Values, dest interface{})
 
 	uri.RawQuery = values.Encode()
 
-	if req, err = http.NewRequest("GET", uri.String(), nil); err != nil {
+	if req, err = http.NewRequest(MethodGet, uri.String(), nil); err != nil {
 		return err
 	}
 
@@ -103,8 +146,10 @@ func (c *Client) signedGet(endpoint string, values url.Values, dest interface{})
 		return err
 	}
 
-	if err = decodeBody(res, dest); err != nil {
-		return err
+	if dest != nil {
+		if err = decodeBody(res, dest); err != nil {
+			return err
+		}
 	}
 
 	return nil
@@ -138,4 +183,27 @@ func (c *Client) GetSessionsByInstanceID(instanceID string) ([]Session, error) {
 	}
 
 	return data.Sessions, nil
+}
+
+func (c *Client) RegisterInstance(classID string, data interface{}) (*Instance, error) {
+	var dest instanceEnvelope
+
+	instance := Instance{
+		ClassID: classID,
+		Data:    data,
+	}
+
+	if err := c.signedPost(deviceInstanceIndexEndpoint, instanceEnvelope{instance}, &dest); err != nil {
+		return nil, err
+	}
+
+	return &dest.Instance, nil
+}
+
+func (c *Client) RegisterSession() error {
+	return nil
+}
+
+func (c *Client) PushEvent() error {
+	return nil
 }

@@ -5,11 +5,11 @@ import (
 )
 
 type Instance struct {
-	ID        string      `json:"id"`
-	UserID    string      `json:"user_id"`
+	ID        string      `json:"id,omitempty"`
+	UserID    string      `json:"user_id,omitempty"`
 	ClassID   string      `json:"class_id"`
-	Data      interface{} `json:"data"`
-	CreatedAt time.Time   `json:"created_at"`
+	Data      interface{} `json:"user_data,omitempty"`
+	CreatedAt time.Time   `json:"created_at,omitempty"`
 }
 
 type instanceEnvelope struct {

@@ -18,6 +18,7 @@ GET			/device_classes													Class.Index
 GET			/device_classes/:id											Class.Get
 DELETE	/device_classes/:id											Class.Remove
 
+POST			/device_instances												Instance.Create
 GET			/device_instances												Instance.Index
 GET			/device_instances/:id										Instance.Get
 DELETE	/device_instances/:id										Instance.Remove

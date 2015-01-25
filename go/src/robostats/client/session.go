@@ -10,7 +10,7 @@ type Session struct {
 	ClassID    string      `json:"class_id"`
 	InstanceID string      `json:"instance_id"`
 	SessionKey string      `json:"session_key"`
-	Data       interface{} `json:"data"`
+	Data       interface{} `json:"user_data"`
 	StartTime  time.Time   `json:"start_time"`
 	EndTime    time.Time   `json:"end_time"`
 	CreatedAt  time.Time   `json:"created_at"`

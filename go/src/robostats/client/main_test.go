@@ -23,6 +23,12 @@ func TestClientLogin(t *testing.T) {
 	}
 
 	for _, class := range classes {
+		// Add new instance
+		if _, err = client.RegisterInstance(class.ID, map[string]string{"foo": "bar"}); err != nil {
+			t.Fatal(err)
+		}
+
+		// List instances.
 		var instances []Instance
 		if instances, err = client.GetInstancesByClassID(class.ID); err != nil {
 			t.Log(err)
