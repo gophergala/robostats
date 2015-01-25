@@ -79,3 +79,8 @@ func (c Beat) Remove() revel.Result {
 
 	return c.StatusOK()
 }
+
+// Returns agregated data.
+func (c Beat) TimeSeries() revel.Result {
+	return c.StatusOK()
+}

@@ -304,6 +304,10 @@ OK
 
 Returns all instances that belong to the user.
 
+Optional GET parameters:
+
+* device_class_id: return only device instances related to this class id.
+
 ```
 curl api.dev.robostats.io/device_instances -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071"
 > GET /device_instances HTTP/1.1
