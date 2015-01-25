@@ -3,30 +3,44 @@
 Robotstats is a platform to gather and display statistics for robots and other
 connected devices.
 
-Robostats can also be used as a remote control to send signals to connected
+You may see a development preview at
+[dev.robostats.io](http://dev.robostats.io).
+
+~~Robostats can also be used as a remote control to send signals to connected
 devices of the same kind, when a device receives this signal it can alter its
-behaviour.
+behaviour and provide feedback.~~
 
 ![general](https://cloud.githubusercontent.com/assets/385670/5893726/9ff493ac-a4b4-11e4-8a94-d769a9d0efea.png)
 
 ## The API
 
-The Robostats API provides tools for creating categories for your devices (or
-robot *classes*) to which new robots can add themselves, each class has an API
-key.
+The [Robostats API](https://github.com/gophergala/robostats/tree/master/go/src/robostats/api)
+provides tools for creating categories for your devices (or robot *classes*).
+Each class has its own API key, connected devices can use this API key to
+register themselves (as a robot *instance*).
 
-* Classes
-* Instances
-* Sessions
-* Events
+A robot instance must create a session before adding events, a session is like
+a bucket to store actual device logs.
+
+Different devices may produce different events and event values, that's why we
+use MongoDB as permanent storage, its ability to save schemaless documents can
+be used to store many different kinds of logs.
 
 ## Client package
+
+There is also a
+[client](https://github.com/gophergala/robostats/tree/master/go/src/robostats/client)
+package for Robostats that can be used as an example to communicate with the
+API.
 
 ## Panel for analytics
 
 ## Remote control
 
 ## Internal documentation
+
+If you're interested on hacking the platform, you may want to read these
+resources:
 
 * [API endpoints](https://github.com/gophergala/robostats/tree/master/doc)
 
