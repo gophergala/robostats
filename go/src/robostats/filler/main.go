@@ -152,8 +152,12 @@ func main() {
 			ClassID:    randomSession.ClassID,
 			InstanceID: randomSession.InstanceID,
 			SessionID:  randomSession.ID,
-			LocalTime:  beatTimes[randomSession.ID],
-			LatLng:     beatLatLng[randomSession.ID],
+			Data: map[string]interface{}{
+				"cpu":    float64(rand.Float32()),
+				"height": float64(rand.Intn(3)) + rand.Float64(),
+			},
+			LocalTime: beatTimes[randomSession.ID],
+			LatLng:    beatLatLng[randomSession.ID],
 		}
 
 		if err := newBeat.Create(); err != nil {

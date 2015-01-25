@@ -12,11 +12,11 @@ func init() {
 }
 
 type beatEnvelope struct {
-	Beat beat.Beat `json:"deviceLog"`
+	Beat beat.Beat `json:"deviceEvent"`
 }
 
 type beatsEnvelope struct {
-	Beats []*beat.Beat `json:"deviceLogs"`
+	Beats []*beat.Beat `json:"deviceEvents"`
 }
 
 type Beat struct {

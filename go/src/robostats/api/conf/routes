@@ -26,9 +26,9 @@ GET			/device_sessions												Session.Index
 GET			/device_sessions/:id										Session.Get
 DELETE	/device_sessions/:id										Session.Remove
 
-GET			/device_logs												Beat.Index
-GET			/device_logs/:id										Beat.Get
-DELETE	/device_logs/:id										Beat.Remove
+GET			/device_events												Beat.Index
+GET			/device_events/:id										Beat.Get
+DELETE	/device_events/:id										Beat.Remove
 
 
 # Map static resources from the /app/public folder to the /public path
