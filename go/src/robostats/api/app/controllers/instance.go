@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/revel/revel"
 	"gopkg.in/mgo.v2/bson"
+	"log"
 	"robostats/models/instance"
 	"robostats/models/user"
 )
@@ -21,6 +22,36 @@ type instancesEnvelope struct {
 
 type Instance struct {
 	Common
+}
+
+func (c Instance) Create() revel.Result {
+	var err error
+	var u *user.User
+	var k instanceEnvelope
+
+	if u, err = c.requireAuthorization(); err != nil {
+		return c.StatusUnauthorized()
+	}
+
+	log.Printf("decode...")
+
+	if err = c.decodeBody(&k); err != nil {
+		log.Printf("decode error...: %v", err)
+		return c.StatusBadRequest()
+	}
+
+	if !k.Instance.ClassID.Valid() {
+		log.Printf("NOT VALID\n")
+		return c.StatusBadRequest()
+	}
+
+	k.Instance.UserID = u.ID
+
+	if err = k.Instance.Create(); err != nil {
+		return c.writeError(err)
+	}
+
+	return c.dataCreated(instanceEnvelope{k.Instance})
 }
 
 // Index returns all instances.

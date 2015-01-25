@@ -15,7 +15,7 @@ type Session struct {
 	ClassID    bson.ObjectId `bson:"class_id" json:"class_id"`
 	InstanceID bson.ObjectId `bson:"instance_id" json:"instance_id"`
 	SessionKey string        `bson:"session_key" json:"session_key"`
-	Data       interface{}   `bson:"data" json:"data"`
+	Data       interface{}   `bson:"data" json:"user_data"`
 	StartTime  time.Time     `bson:"start_time,omitempty" json:"start_time"`
 	EndTime    time.Time     `bson:"end_time,omitempty" json:"end_time"`
 	CreatedAt  time.Time     `bson:"created_at" json:"created_at"`

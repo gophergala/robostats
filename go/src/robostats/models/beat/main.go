@@ -15,7 +15,7 @@ type Beat struct {
 	ClassID    bson.ObjectId `bson:"class_id" json:"class_id"`
 	InstanceID bson.ObjectId `bson:"instance_id" json:"instance_id"`
 	SessionID  bson.ObjectId `bson:"session_id" json:"session_id"`
-	Data       interface{}   `bson:"data" json:"data"`
+	Data       interface{}   `bson:"data" json:"user_data"`
 	LocalTime  int           `bson:"local_time" json:"local_time"`
 	LatLng     [2]float64    `bson:"latlng" json:"latlng"`
 	CreatedAt  time.Time     `bson:"created_at" json:"created_at"`
