@@ -9,8 +9,8 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    showEvents: function(session) {
-      this.transitionTo('devcie-events.show', session);
+    showSessions: function(session) {
+      this.transitionTo('devcie-sessions.show', session);
     }
   }
 });
