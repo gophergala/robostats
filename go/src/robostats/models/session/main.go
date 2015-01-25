@@ -58,6 +58,78 @@ func GetByID(id bson.ObjectId) (*Session, error) {
 	return &s, err
 }
 
+// GetByInstanceID returns sessions associated with the given Instance ID.
+func GetByInstanceID(id bson.ObjectId) ([]*Session, error) {
+	var err error
+	var c []*Session
+
+	if id.Valid() == false {
+		return nil, errmsg.ErrInvalidID
+	}
+
+	res := SessionCollection.Find(db.Cond{
+		"instance_id": id,
+	})
+
+	if k, _ := res.Count(); k < 1 {
+		return nil, errmsg.ErrNoSuchItem
+	}
+
+	if err = res.All(&c); err != nil {
+		return nil, err
+	}
+
+	return c, err
+}
+
+// GetByUserID returns sessions associated with the given User ID.
+func GetByUserID(id bson.ObjectId) ([]*Session, error) {
+	var err error
+	var c []*Session
+
+	if id.Valid() == false {
+		return nil, errmsg.ErrInvalidID
+	}
+
+	res := SessionCollection.Find(db.Cond{
+		"user_id": id,
+	})
+
+	if k, _ := res.Count(); k < 1 {
+		return nil, errmsg.ErrNoSuchItem
+	}
+
+	if err = res.All(&c); err != nil {
+		return nil, err
+	}
+
+	return c, err
+}
+
+// GetByClassID returns a instance by the given ID.
+func GetByClassID(id bson.ObjectId) ([]*Session, error) {
+	var err error
+	var c []*Session
+
+	if id.Valid() == false {
+		return nil, errmsg.ErrInvalidID
+	}
+
+	res := SessionCollection.Find(db.Cond{
+		"class_id": id,
+	})
+
+	if k, _ := res.Count(); k < 1 {
+		return nil, errmsg.ErrNoSuchItem
+	}
+
+	if err = res.All(&c); err != nil {
+		return nil, err
+	}
+
+	return c, err
+}
+
 func (s *Session) Remove() error {
 
 	if s.ID.Valid() == false {

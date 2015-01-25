@@ -53,6 +53,54 @@ func GetByID(id bson.ObjectId) (*Instance, error) {
 	return &i, err
 }
 
+// GetByClassID returns a instance by the given ID.
+func GetByClassID(id bson.ObjectId) ([]*Instance, error) {
+	var err error
+	var c []*Instance
+
+	if id.Valid() == false {
+		return nil, errmsg.ErrInvalidID
+	}
+
+	res := InstanceCollection.Find(db.Cond{
+		"class_id": id,
+	})
+
+	if k, _ := res.Count(); k < 1 {
+		return nil, errmsg.ErrNoSuchItem
+	}
+
+	if err = res.All(&c); err != nil {
+		return nil, err
+	}
+
+	return c, err
+}
+
+// GetByUserID returns a instance by the given ID.
+func GetByUserID(id bson.ObjectId) ([]*Instance, error) {
+	var err error
+	var c []*Instance
+
+	if id.Valid() == false {
+		return nil, errmsg.ErrInvalidID
+	}
+
+	res := InstanceCollection.Find(db.Cond{
+		"user_id": id,
+	})
+
+	if k, _ := res.Count(); k < 1 {
+		return nil, errmsg.ErrNoSuchItem
+	}
+
+	if err = res.All(&c); err != nil {
+		return nil, err
+	}
+
+	return c, err
+}
+
 func (i *Instance) Remove() error {
 
 	if i.ID.Valid() == false {

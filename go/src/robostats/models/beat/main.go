@@ -57,6 +57,102 @@ func GetByID(id bson.ObjectId) (*Beat, error) {
 	return &b, err
 }
 
+// GetByClassID returns beats associated with the given Class ID.
+func GetByClassID(id bson.ObjectId) ([]*Beat, error) {
+	var err error
+	var c []*Beat
+
+	if id.Valid() == false {
+		return nil, errmsg.ErrInvalidID
+	}
+
+	res := BeatCollection.Find(db.Cond{
+		"class_id": id,
+	})
+
+	if k, _ := res.Count(); k < 1 {
+		return nil, errmsg.ErrNoSuchItem
+	}
+
+	if err = res.All(&c); err != nil {
+		return nil, err
+	}
+
+	return c, err
+}
+
+// GetBySessionID returns beats associated with the given Session ID.
+func GetBySessionID(id bson.ObjectId) ([]*Beat, error) {
+	var err error
+	var c []*Beat
+
+	if id.Valid() == false {
+		return nil, errmsg.ErrInvalidID
+	}
+
+	res := BeatCollection.Find(db.Cond{
+		"session_id": id,
+	})
+
+	if k, _ := res.Count(); k < 1 {
+		return nil, errmsg.ErrNoSuchItem
+	}
+
+	if err = res.All(&c); err != nil {
+		return nil, err
+	}
+
+	return c, err
+}
+
+// GetByUserID returns beats associated with the given User ID.
+func GetByUserID(id bson.ObjectId) ([]*Beat, error) {
+	var err error
+	var c []*Beat
+
+	if id.Valid() == false {
+		return nil, errmsg.ErrInvalidID
+	}
+
+	res := BeatCollection.Find(db.Cond{
+		"user_id": id,
+	})
+
+	if k, _ := res.Count(); k < 1 {
+		return nil, errmsg.ErrNoSuchItem
+	}
+
+	if err = res.All(&c); err != nil {
+		return nil, err
+	}
+
+	return c, err
+}
+
+// GetByInstanceID returns beats associated with the given Instance ID.
+func GetByInstanceID(id bson.ObjectId) ([]*Beat, error) {
+	var err error
+	var c []*Beat
+
+	if id.Valid() == false {
+		return nil, errmsg.ErrInvalidID
+	}
+
+	res := BeatCollection.Find(db.Cond{
+		"instance_id": id,
+	})
+
+	if k, _ := res.Count(); k < 1 {
+		return nil, errmsg.ErrNoSuchItem
+	}
+
+	if err = res.All(&c); err != nil {
+		return nil, err
+	}
+
+	return c, err
+}
+
 func (b *Beat) Remove() error {
 
 	if b.ID.Valid() == false {
