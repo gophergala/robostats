@@ -6,6 +6,7 @@ import (
 	"github.com/revel/revel"
 	"gopkg.in/mgo.v2/bson"
 	"robostats/models/beat"
+	"robostats/models/instance"
 	"robostats/models/session"
 	"robostats/models/user"
 )
@@ -24,6 +25,39 @@ type sessionsEnvelope struct {
 
 type Session struct {
 	Common
+}
+
+func (c Session) Create() revel.Result {
+	var err error
+	var u *user.User
+	var k sessionEnvelope
+	var i *instance.Instance
+
+	if u, err = c.requireAuthorization(); err != nil {
+		return c.StatusUnauthorized()
+	}
+
+	if err = c.decodeBody(&k); err != nil {
+		return c.StatusBadRequest()
+	}
+
+	if !k.Session.InstanceID.Valid() {
+		return c.StatusBadRequest()
+	}
+
+	if i, err = instance.GetByID(k.Session.InstanceID); err != nil {
+		return c.StatusBadRequest()
+	}
+
+	k.Session.UserID = u.ID
+	k.Session.ClassID = i.ClassID
+	k.Session.InstanceID = i.ID
+
+	if err = k.Session.Create(); err != nil {
+		return c.writeError(err)
+	}
+
+	return c.dataCreated(sessionEnvelope{k.Session})
 }
 
 // Index returns all sessions.
