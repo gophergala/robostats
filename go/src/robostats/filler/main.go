@@ -15,9 +15,9 @@ import (
 )
 
 const (
-	randomInstancesLen = 50
+	randomInstancesLen = 5
 	randomSessionsLen  = 10
-	randomBeatsLen     = 100
+	randomBeatsLen     = 1000
 )
 
 var (
