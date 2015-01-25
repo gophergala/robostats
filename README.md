@@ -6,9 +6,9 @@ connected devices.
 You may see a development preview at
 [dev.robostats.io](http://dev.robostats.io).
 
-~~Robostats can also be used as a remote control to send signals to connected
+Robostats can also be used as a remote control to send signals to connected
 devices of the same kind, when a device receives this signal it can alter its
-behaviour and provide feedback.~~
+behaviour and provide feedback.
 
 ![general](https://cloud.githubusercontent.com/assets/385670/5893726/9ff493ac-a4b4-11e4-8a94-d769a9d0efea.png)
 
@@ -35,9 +35,13 @@ API.
 
 ## Panel for analytics
 
-The analytics panel provides an overview of all registered devices, organized by it's class. It allows users to register new device classes and get the generated api key for each class.
+The analytics panel provides an overview of all registered devices, organized
+by it's class. It allows users to register new device classes and get the
+generated api key for each class.
 
-Selecting a device class users can drill down to a specific device, it's sesisons (any period of activity) and finally, to a graph that shows all the events generated from that drone in a particular sesion. 
+Selecting a device class users can drill down to a specific device, it's
+sesisons (any period of activity) and finally, to a graph that shows all the
+events generated from that drone in a particular sesion.
 
 ![web-1](https://cloud.githubusercontent.com/assets/1133/5893820/7531d81a-a4b8-11e4-9316-7126455d99c5.png)
 ![web-2](https://cloud.githubusercontent.com/assets/1133/5893822/75379016-a4b8-11e4-864b-3d931eb8fcc0.png)
