@@ -1,7 +1,7 @@
 # Robostats
 
-Robostats is a platform that displays statistics for robots and other
-connected devices.
+Robostats is a platform that displays statistics for robots and other connected
+devices.
 
 Robostats can also be used as a tool for sending instructions to connected
 devices and test different pre-defined behaviours.
