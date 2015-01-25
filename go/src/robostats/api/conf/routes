@@ -26,6 +26,7 @@ DELETE	/device_instances/:id										Instance.Remove
 POST			/device_sessions												Session.Create
 GET			/device_sessions												Session.Index
 GET			/device_sessions/time_series				Session.TimeSeries
+OPTIONS			/device_sessions/time_series				App.Options
 GET			/device_sessions/:id										Session.Get
 DELETE	/device_sessions/:id										Session.Remove
 
