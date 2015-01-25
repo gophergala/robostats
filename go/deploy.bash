@@ -8,5 +8,5 @@ ssh www-data@dev.robostats.io '
   rm -rf api;
   mkdir api;
   tar xvzf api.tar.gz -C api/;
-  cd api && ./run.sh
+  cd api && nohup ./run.sh > app-log.out 2> app-log.err < /dev/null &
 '
