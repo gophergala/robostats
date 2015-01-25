@@ -4,6 +4,7 @@ import (
 	"github.com/revel/revel"
 	"gopkg.in/mgo.v2/bson"
 	"robostats/models/beat"
+	"robostats/models/session"
 	"robostats/models/user"
 )
 
@@ -21,6 +22,40 @@ type beatsEnvelope struct {
 
 type Beat struct {
 	Common
+}
+
+func (c Beat) Create() revel.Result {
+	var err error
+	var u *user.User
+	var k beatEnvelope
+	var s *session.Session
+
+	if u, err = c.requireAuthorization(); err != nil {
+		return c.StatusUnauthorized()
+	}
+
+	if err = c.decodeBody(&k); err != nil {
+		return c.StatusBadRequest()
+	}
+
+	if !k.Beat.SessionID.Valid() {
+		return c.StatusBadRequest()
+	}
+
+	if s, err = session.GetByID(k.Beat.SessionID); err != nil {
+		return c.StatusBadRequest()
+	}
+
+	k.Beat.UserID = u.ID
+	k.Beat.ClassID = s.ClassID
+	k.Beat.InstanceID = s.InstanceID
+	k.Beat.SessionID = s.ID
+
+	if err = k.Beat.Create(); err != nil {
+		return c.writeError(err)
+	}
+
+	return c.dataCreated(beatEnvelope{k.Beat})
 }
 
 // Index returns all beats.
