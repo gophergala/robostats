@@ -60,7 +60,7 @@ curl api.dev.robostats.io/user/login -d "email=user@example.com&password=fail" -
 Unauthorized
 ```
 
-## POST /user (application/json)
+## POST /users (application/json)
 
 Creates an user.
 
@@ -304,6 +304,10 @@ OK
 
 Returns all instances that belong to the user.
 
+Optional GET parameters:
+
+* device_class_id: return only device instances related to this class id.
+
 ```
 curl api.dev.robostats.io/device_instances -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071"
 > GET /device_instances HTTP/1.1
@@ -539,14 +543,14 @@ curl api.dev.robostats.io/device_sessions/54c4ebfe60d71e7c8400000f -H "Content-t
 OK
 ```
 
-## GET /device_logs
+## GET /device_events
 
 Returns all logs that belong to the user.
 
 ```
-curl api.dev.robostats.io/device_logs -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose
+curl api.dev.robostats.io/device_events -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose
 
-> GET /device_logs HTTP/1.1
+> GET /device_events HTTP/1.1
 > User-Agent: curl/7.37.0
 > Host: api.dev.robostats.io
 > Accept: */*
@@ -596,6 +600,243 @@ curl api.dev.robostats.io/device_logs -H "Content-type: application/json" -X GET
       "created_at": "2015-01-25T07:13:34.887-06:00"
     }
 	]
+}
+```
+
+## GET /device_sessions/time_series
+
+Required parameters:
+
+* session_id
+* key[]
+
+```
+curl 'api.dev.robostats.io/device_sessions/time_series?session_id=54c542d612fa74250100000f&key\[\]=cpu' -X GET -H "Authorization: Bearer W7wDOMQ4ytC0hfI76r3HdBOGSoiZ1lB01vNOLx8T"  --verbose
+* Hostname was NOT found in DNS cache
+*   Trying 104.236.93.29...
+* Connected to api.dev.robostats.io (104.236.93.29) port 80 (#0)
+> GET /device_sessions/time_series?session_id=54c542d612fa74250100000f&key[]=cpu HTTP/1.1
+> User-Agent: curl/7.37.0
+> Host: api.dev.robostats.io
+> Accept: */*
+> Authorization: Bearer W7wDOMQ4ytC0hfI76r3HdBOGSoiZ1lB01vNOLx8T
+>
+< HTTP/1.1 200 OK
+* Server nginx/1.4.6 (Ubuntu) is not blacklisted
+< Server: nginx/1.4.6 (Ubuntu)
+< Date: Sun, 25 Jan 2015 19:28:53 GMT
+< Content-Type: application/json
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+< Access-Control-Allow-Origin: *
+< Set-Cookie: REVEL_FLASH=; Path=/
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+
+{
+  "time_serie":{
+    "steps":[
+      "4",
+      "9",
+      "12",
+      "16",
+      "18",
+      "23",
+      "24",
+      "28",
+      "29",
+      "30",
+      "33",
+      "38",
+      "39",
+      "40",
+      "45",
+      "50",
+      "53",
+      "56",
+      "60",
+      "63",
+      "68",
+      "73",
+      "74",
+      "79",
+      "84",
+      "86",
+      "87",
+      "91",
+      "94",
+      "98",
+      "102",
+      "107",
+      "110",
+      "111",
+      "116",
+      "121",
+      "125",
+      "128",
+      "129",
+      "130",
+      "132",
+      "135",
+      "137",
+      "139",
+      "144",
+      "146",
+      "149",
+      "151",
+      "155",
+      "160",
+      "165",
+      "168",
+      "173",
+      "177",
+      "182",
+      "184",
+      "185",
+      "186",
+      "191",
+      "195",
+      "200",
+      "202",
+      "205",
+      "206",
+      "210",
+      "212",
+      "217",
+      "220",
+      "222",
+      "226",
+      "227",
+      "228",
+      "231",
+      "233",
+      "236",
+      "237",
+      "242",
+      "247",
+      "249",
+      "253",
+      "258",
+      "262",
+      "267",
+      "271",
+      "272",
+      "277",
+      "280",
+      "283",
+      "288",
+      "291",
+      "292",
+      "293",
+      "298",
+      "300",
+      "301"
+    ],
+    "values":{
+      "cpu":[
+        0.06580421328544617,
+        0.8488441705703735,
+        0.10052532702684402,
+        0.2614118158817291,
+        0.6557889580726624,
+        0.6584054827690125,
+        0.9775729179382324,
+        0.7425039410591125,
+        0.43388327956199646,
+        0.26217707991600037,
+        0.48331668972969055,
+        0.2840568721294403,
+        0.9878626465797424,
+        0.38125765323638916,
+        0.640898585319519,
+        0.6719640493392944,
+        0.6014140248298645,
+        0.0981513187289238,
+        0.22008708119392395,
+        0.5315225720405579,
+        0.43042775988578796,
+        0.08740442991256714,
+        0.004428897984325886,
+        0.8683210611343384,
+        0.7270494699478149,
+        0.3117087781429291,
+        0.43723079562187195,
+        0.7535176277160645,
+        0.23146456480026245,
+        0.7297129034996033,
+        0.04842108115553856,
+        0.3271646201610565,
+        0.44170287251472473,
+        0.20092080533504486,
+        0.9143272638320923,
+        0.18377190828323364,
+        0.20140109956264496,
+        0.658624529838562,
+        0.7657321691513062,
+        0.005155558697879314,
+        0.772403359413147,
+        0.6709102392196655,
+        0.30460798740386963,
+        0.50579434633255,
+        0.48936089873313904,
+        0.14246414601802826,
+        0.2330542653799057,
+        0.9285175800323486,
+        0.7499865889549255,
+        0.1671348214149475,
+        0.7868396043777466,
+        0.7580482959747314,
+        0.13535353541374207,
+        0.7484891414642334,
+        0.961996853351593,
+        0.5624016523361206,
+        0.29574349522590637,
+        0.12745633721351624,
+        0.9174259305000305,
+        0.20055775344371796,
+        0.07886053621768951,
+        0.8275659084320068,
+        0.20144103467464447,
+        0.4306133985519409,
+        0.8462740778923035,
+        0.8102183938026428,
+        0.7332144379615784,
+        0.316532701253891,
+        0.10482120513916016,
+        0.6120192408561707,
+        0.06303984671831131,
+        0.26034507155418396,
+        0.04752376675605774,
+        0.42816299200057983,
+        0.9987062215805054,
+        0.29561689496040344,
+        0.5344931483268738,
+        0.2778962254524231,
+        0.2912706732749939,
+        0.31632083654403687,
+        0.4529159367084503,
+        0.7359374165534973,
+        0.4961923062801361,
+        0.3104954957962036,
+        0.9962745308876038,
+        0.6005687713623047,
+        0.9811151623725891,
+        0.0733659490942955,
+        0.1772964596748352,
+        0.1126754954457283,
+        0.1941128522157669,
+        0.33268168568611145,
+        0.11313501745462418,
+        0.984341561794281,
+        0.026709144935011864
+      ]
+    },
+    "label":{
+      "cpu":"cpu"
+    }
+  }
 }
 ```
 

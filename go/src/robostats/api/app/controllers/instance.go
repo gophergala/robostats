@@ -28,13 +28,22 @@ func (c Instance) Index() revel.Result {
 	var err error
 	var u *user.User
 	var instances []*instance.Instance
+	var deviceClassID string
+
+	c.Params.Bind(&deviceClassID, "device_class_id")
 
 	if u, err = c.requireAuthorization(); err != nil {
 		return c.StatusUnauthorized()
 	}
 
-	if instances, err = instance.GetByUserID(u.ID); err != nil {
-		return c.writeError(err)
+	if deviceClassID != "" {
+		if instances, err = instance.GetByClassID(bson.ObjectIdHex(deviceClassID)); err != nil {
+			return c.writeError(err)
+		}
+	} else {
+		if instances, err = instance.GetByUserID(u.ID); err != nil {
+			return c.writeError(err)
+		}
 	}
 
 	return c.dataGeneric(instancesEnvelope{instances})

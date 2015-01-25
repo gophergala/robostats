@@ -12,11 +12,11 @@ func init() {
 }
 
 type beatEnvelope struct {
-	Beat beat.Beat `json:"deviceLog"`
+	Beat beat.Beat `json:"deviceEvent"`
 }
 
 type beatsEnvelope struct {
-	Beats []*beat.Beat `json:"deviceLogs"`
+	Beats []*beat.Beat `json:"deviceEvents"`
 }
 
 type Beat struct {
@@ -29,12 +29,30 @@ func (c Beat) Index() revel.Result {
 	var u *user.User
 	var beats []*beat.Beat
 
+	var deviceClassID string
+	var deviceInstanceID string
+	var deviceSessionID string
+
 	if u, err = c.requireAuthorization(); err != nil {
 		return c.StatusUnauthorized()
 	}
 
-	if beats, err = beat.GetByUserID(u.ID); err != nil {
-		return c.writeError(err)
+	if deviceClassID != "" {
+		if beats, err = beat.GetByClassID(bson.ObjectIdHex(deviceClassID)); err != nil {
+			return c.writeError(err)
+		}
+	} else if deviceInstanceID != "" {
+		if beats, err = beat.GetByInstanceID(bson.ObjectIdHex(deviceInstanceID)); err != nil {
+			return c.writeError(err)
+		}
+	} else if deviceSessionID != "" {
+		if beats, err = beat.GetBySessionID(bson.ObjectIdHex(deviceSessionID)); err != nil {
+			return c.writeError(err)
+		}
+	} else {
+		if beats, err = beat.GetByUserID(u.ID); err != nil {
+			return c.writeError(err)
+		}
 	}
 
 	return c.dataGeneric(beatsEnvelope{beats})

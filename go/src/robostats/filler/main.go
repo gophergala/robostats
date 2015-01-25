@@ -145,15 +145,19 @@ func main() {
 			beatTimes[randomSession.ID] = 0
 		}
 
-		beatTimes[randomSession.ID] += rand.Intn(5)
+		beatTimes[randomSession.ID] += 1 + rand.Intn(5)
 
 		newBeat := &beat.Beat{
 			UserID:     u.ID,
 			ClassID:    randomSession.ClassID,
 			InstanceID: randomSession.InstanceID,
 			SessionID:  randomSession.ID,
-			LocalTime:  beatTimes[randomSession.ID],
-			LatLng:     beatLatLng[randomSession.ID],
+			Data: bson.M{
+				"cpu":    float64(rand.Float32()),
+				"height": float64(rand.Intn(3)) + rand.Float64(),
+			},
+			LocalTime: beatTimes[randomSession.ID],
+			LatLng:    beatLatLng[randomSession.ID],
 		}
 
 		if err := newBeat.Create(); err != nil {

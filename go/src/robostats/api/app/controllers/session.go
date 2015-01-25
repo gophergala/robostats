@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"errors"
+	"fmt"
 	"github.com/revel/revel"
 	"gopkg.in/mgo.v2/bson"
+	"robostats/models/beat"
 	"robostats/models/session"
 	"robostats/models/user"
 )
@@ -29,12 +32,28 @@ func (c Session) Index() revel.Result {
 	var u *user.User
 	var sessions []*session.Session
 
+	var deviceInstanceID string
+	var deviceClassID string
+
+	c.Params.Bind(&deviceInstanceID, "device_instance_id")
+	c.Params.Bind(&deviceClassID, "device_class_id")
+
 	if u, err = c.requireAuthorization(); err != nil {
 		return c.StatusUnauthorized()
 	}
 
-	if sessions, err = session.GetByUserID(u.ID); err != nil {
-		return c.writeError(err)
+	if deviceClassID != "" {
+		if sessions, err = session.GetByClassID(bson.ObjectIdHex(deviceClassID)); err != nil {
+			return c.writeError(err)
+		}
+	} else if deviceInstanceID != "" {
+		if sessions, err = session.GetByInstanceID(bson.ObjectIdHex(deviceInstanceID)); err != nil {
+			return c.writeError(err)
+		}
+	} else {
+		if sessions, err = session.GetByUserID(u.ID); err != nil {
+			return c.writeError(err)
+		}
 	}
 
 	return c.dataGeneric(sessionsEnvelope{sessions})
@@ -78,4 +97,47 @@ func (c Session) Remove() revel.Result {
 	}
 
 	return c.StatusOK()
+}
+
+func (c Session) TimeSeries() revel.Result {
+	var sessionID string
+	var key []string
+
+	var err error
+
+	if _, err = c.requireAuthorization(); err != nil {
+		return c.StatusUnauthorized()
+	}
+
+	c.Params.Bind(&sessionID, "session_id")
+	c.Params.Bind(&key, "key")
+
+	if len(key) == 0 {
+		return c.writeError(errors.New("Missing at least one key."))
+	}
+	fmt.Printf("key: %v\n", key)
+
+	if sessionID == "" {
+		return c.writeError(errors.New("Missing session_id."))
+	}
+
+	var bs []*beat.Beat
+	if bs, err = beat.GetBySessionID(bson.ObjectIdHex(sessionID)); err != nil {
+		return c.writeError(err)
+	}
+
+	ts := make(TimeEvents, 0, len(bs))
+
+	for _, b := range bs {
+		te := TimeEvent{
+			LocalTime: b.LocalTime,
+			Event:     make(map[string]interface{}),
+		}
+		for _, k := range key {
+			te.Event[k], _ = b.GetKeyValue(k)
+		}
+		ts = append(ts, te)
+	}
+
+	return c.dataGeneric(ts.Envelope())
 }
