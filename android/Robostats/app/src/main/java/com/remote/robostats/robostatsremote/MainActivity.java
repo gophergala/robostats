@@ -25,13 +25,13 @@ import java.net.URL;
 
 public class MainActivity extends ActionBarActivity {
 
-    public final static String robostatsUserName = "";
-    public final static String robostatsnPassword = "";
+    public final static String robostatsUserName = "user";
+    public final static String robostatsnPassword = "pass";
     public final static String apiURL = "?";
 
     private class emailVerificationResult {
-        public String statusNbr;
-        public String hygieneResult;
+        public String status;
+        public String result;
     }
 
     private class CallAPI extends AsyncTask<String, String, String> {
@@ -70,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
 
             // Logic to determine if the login is invalid, or valid
             if (result != null ) {
-                if( Integer.parseInt(result.statusNbr) >= 300) {
+                if( Integer.parseInt(result.status) >= 300) {
                     resultToDisplay = "Invalid login credentials";
                 }
                 else {
@@ -112,10 +112,10 @@ public class MainActivity extends ActionBarActivity {
                             System.out.println("");
                         }
                         else if ( name.equals("")) {
-                            result.statusNbr = parser.nextText();
+                            result.status = parser.nextText();
                         }
                         else if (name.equals("")) {
-                            result.hygieneResult = parser.nextText();
+                            result.result = parser.nextText();
                         }
                         break;
                     case XmlPullParser.END_TAG:

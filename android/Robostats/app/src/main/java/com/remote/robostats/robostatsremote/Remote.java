@@ -3,6 +3,8 @@ package com.remote.robostats.robostatsremote;
 import android.os.Bundle;
 import android.app.Activity;
 
+import com.remote.robostats.robostats.R;
+
 /**
  * Created by vero on 1/25/15.
  */
