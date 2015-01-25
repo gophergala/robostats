@@ -153,7 +153,7 @@ func main() {
 			InstanceID: randomSession.InstanceID,
 			SessionID:  randomSession.ID,
 			Data: bson.M{
-				"cpu":    float64(rand.Float32()),
+				"cpu":    float64(0.8 + rand.Float32()*0.3),
 				"height": float64(rand.Intn(3)) + rand.Float64(),
 			},
 			LocalTime: beatTimes[randomSession.ID],
