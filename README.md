@@ -24,6 +24,10 @@ key.
 
 ## Panel for analytics
 
+The analytics panel provides an overview of all registered devices, organized by it's class. It allows users to register new device classes and get the generated api key for each class.
+
+Selecting a device class users can drill down to a specific device, it's sesisons (any period of activity) and finally, to a graph that shows all the events generated from that drone in a particular sesion. 
+
 ## Remote control
 
 ## Internal documentation
