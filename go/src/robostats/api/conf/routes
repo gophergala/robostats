@@ -10,7 +10,7 @@
 GET     /favicon.ico                            404
 
 POST    /user/login                             User.Login
-POST    /user                                   User.Create
+POST    /users                                  User.Create
 GET			/users/:id                               User.Me
 
 POST		/device_classes													Class.Create
@@ -23,6 +23,7 @@ GET			/device_instances/:id										Instance.Get
 DELETE	/device_instances/:id										Instance.Remove
 
 GET			/device_sessions												Session.Index
+GET			/device_sessions/time_series				Session.TimeSeries
 GET			/device_sessions/:id										Session.Get
 DELETE	/device_sessions/:id										Session.Remove
 

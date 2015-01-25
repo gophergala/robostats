@@ -29,12 +29,30 @@ func (c Beat) Index() revel.Result {
 	var u *user.User
 	var beats []*beat.Beat
 
+	var deviceClassID string
+	var deviceInstanceID string
+	var deviceSessionID string
+
 	if u, err = c.requireAuthorization(); err != nil {
 		return c.StatusUnauthorized()
 	}
 
-	if beats, err = beat.GetByUserID(u.ID); err != nil {
-		return c.writeError(err)
+	if deviceClassID != "" {
+		if beats, err = beat.GetByClassID(bson.ObjectIdHex(deviceClassID)); err != nil {
+			return c.writeError(err)
+		}
+	} else if deviceInstanceID != "" {
+		if beats, err = beat.GetByInstanceID(bson.ObjectIdHex(deviceInstanceID)); err != nil {
+			return c.writeError(err)
+		}
+	} else if deviceSessionID != "" {
+		if beats, err = beat.GetBySessionID(bson.ObjectIdHex(deviceSessionID)); err != nil {
+			return c.writeError(err)
+		}
+	} else {
+		if beats, err = beat.GetByUserID(u.ID); err != nil {
+			return c.writeError(err)
+		}
 	}
 
 	return c.dataGeneric(beatsEnvelope{beats})
@@ -77,10 +95,5 @@ func (c Beat) Remove() revel.Result {
 		return c.statusNotFound()
 	}
 
-	return c.StatusOK()
-}
-
-// Returns agregated data.
-func (c Beat) TimeSeries() revel.Result {
 	return c.StatusOK()
 }

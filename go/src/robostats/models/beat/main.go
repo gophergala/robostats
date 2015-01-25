@@ -2,6 +2,7 @@ package beat
 
 import (
 	"gopkg.in/mgo.v2/bson"
+	labixbson "labix.org/v2/mgo/bson" // TODO: fill a mgo bug for this thing
 	"robostats/errmsg"
 	"robostats/storage"
 	"time"
@@ -92,7 +93,7 @@ func GetBySessionID(id bson.ObjectId) ([]*Beat, error) {
 
 	res := BeatCollection.Find(db.Cond{
 		"session_id": id,
-	})
+	}).Sort("local_time")
 
 	if k, _ := res.Count(); k < 1 {
 		return nil, errmsg.ErrNoSuchItem
@@ -218,4 +219,28 @@ func (b *Beat) save() error {
 	b.ID = id.(bson.ObjectId)
 
 	return nil
+}
+
+func (b *Beat) GetKeyValue(k string) (interface{}, error) {
+	switch k {
+	case "lat_lng":
+		return b.LatLng, nil
+	default:
+		var ok bool
+		var values labixbson.M
+
+		if b.Data == nil {
+			return nil, errmsg.ErrNoSuchKey
+		}
+
+		// WTF?
+		if values, ok = b.Data.(labixbson.M); !ok {
+			return nil, errmsg.ErrNoSuchKey
+		}
+
+		if _, ok = values[k]; ok {
+			return values[k], nil
+		}
+	}
+	return nil, errmsg.ErrNoSuchKey
 }

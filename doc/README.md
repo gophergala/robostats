@@ -60,7 +60,7 @@ curl api.dev.robostats.io/user/login -d "email=user@example.com&password=fail" -
 Unauthorized
 ```
 
-## POST /user (application/json)
+## POST /users (application/json)
 
 Creates an user.
 
@@ -543,14 +543,14 @@ curl api.dev.robostats.io/device_sessions/54c4ebfe60d71e7c8400000f -H "Content-t
 OK
 ```
 
-## GET /device_logs
+## GET /device_events
 
 Returns all logs that belong to the user.
 
 ```
-curl api.dev.robostats.io/device_logs -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose
+curl api.dev.robostats.io/device_events -H "Content-type: application/json" -X GET -H "Authorization: Bearer lapfkPYXWJkhSasV26jD8VN3unMkVF2LvRht2071" --verbose
 
-> GET /device_logs HTTP/1.1
+> GET /device_events HTTP/1.1
 > User-Agent: curl/7.37.0
 > Host: api.dev.robostats.io
 > Accept: */*

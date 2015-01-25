@@ -6,6 +6,7 @@ import (
 )
 
 var (
+	ErrNoSuchKey           = errors.New(`No such key.`)
 	ErrInvalidID           = errors.New(`Invalid ID.`)
 	ErrNoSuchItem          = errors.New(`No such item.`)
 	ErrUserAlreadyexists   = errors.New(`User already exists.`)
