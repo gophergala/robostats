@@ -4,9 +4,9 @@ package client
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 const (
@@ -14,7 +14,10 @@ const (
 )
 
 const (
-	loginEndpoint = endpointPrefix + "/user/login"
+	loginEndpoint               = endpointPrefix + "/user/login"
+	deviceClassIndexEndpoint    = endpointPrefix + "/device_classes"
+	deviceInstanceIndexEndpoint = endpointPrefix + "/device_instances"
+	deviceSessionIndexEndpoint  = endpointPrefix + "/device_sessions"
 )
 
 const (
@@ -32,6 +35,10 @@ type Client struct {
 	Auth     Authorization
 }
 
+func (a *Authorization) authHeader() string {
+	return strings.Title(a.TokenType) + " " + a.AccessToken
+}
+
 func decodeBody(res *http.Response, dest interface{}) error {
 	var buf []byte
 	var err error
@@ -39,8 +46,6 @@ func decodeBody(res *http.Response, dest interface{}) error {
 	if buf, err = ioutil.ReadAll(res.Body); err != nil {
 		return err
 	}
-
-	log.Printf("got: %s\n", string(buf))
 
 	if err := json.Unmarshal(buf, &dest); err != nil {
 		return err
@@ -67,4 +72,70 @@ func (c *Client) Login() error {
 	}
 
 	return nil
+}
+
+func (c *Client) signRequest(req *http.Request) {
+	req.Header.Add("Authorization", c.Auth.authHeader())
+}
+
+func (c *Client) signedGet(endpoint string, values url.Values, dest interface{}) error {
+	var req *http.Request
+	var res *http.Response
+	var err error
+
+	cli := http.Client{}
+
+	var uri *url.URL
+
+	if uri, err = url.Parse(endpoint); err != nil {
+		return err
+	}
+
+	uri.RawQuery = values.Encode()
+
+	if req, err = http.NewRequest("GET", uri.String(), nil); err != nil {
+		return err
+	}
+
+	c.signRequest(req)
+
+	if res, err = cli.Do(req); err != nil {
+		return err
+	}
+
+	if err = decodeBody(res, dest); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *Client) GetClasses() ([]Class, error) {
+	var data classesEnvelope
+
+	if err := c.signedGet(deviceClassIndexEndpoint, nil, &data); err != nil {
+		return nil, err
+	}
+
+	return data.Classes, nil
+}
+
+func (c *Client) GetInstancesByClassID(classID string) ([]Instance, error) {
+	var data instancesEnvelope
+
+	if err := c.signedGet(deviceInstanceIndexEndpoint, url.Values{"device_class_id": {classID}}, &data); err != nil {
+		return nil, err
+	}
+
+	return data.Instances, nil
+}
+
+func (c *Client) GetSessionsByInstanceID(instanceID string) ([]Session, error) {
+	var data sessionsEnvelope
+
+	if err := c.signedGet(deviceSessionIndexEndpoint, url.Values{"device_instance_id": {instanceID}}, &data); err != nil {
+		return nil, err
+	}
+
+	return data.Sessions, nil
 }
