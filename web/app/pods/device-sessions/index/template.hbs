@@ -13,7 +13,7 @@
       </thead>
     <tbody>
       {{#each session in model}}
-      <tr>
+      <tr {{action 'showEvents' session}} style="cursor:pointer">
         <td>{{session.id}}</td>
         <td>{{format-date session.start_time}}</td>
         <td>{{format-date session.end_time}}</td>
