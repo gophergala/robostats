@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Robostats</string>
-    <string name="hello_world">Welcome to Robostats!</string>
+    <string name="hello_world">Welcome to Robostats</string>
     <string name="username_hint"> Your email or username    </string>
     <string name="password_hint"> Password      </string>
     <string name="action_settings">Settings</string>
@@ -15,4 +15,10 @@
     <string name="left_button">Left</string>
     <string name="a_button">A</string>
     <string name="b_button">B</string>
+
+    <color name="orange">#EB5600</color>
+    <color name="pinky">#E9A999</color>
+    <color name="lemony">#EB8200</color>
+    <color name="white">#FFFFFF</color>
+
 </resources>

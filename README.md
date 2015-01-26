@@ -3,16 +3,19 @@
 Robotstats is a platform to gather and display statistics for robots and other
 connected devices.
 
-You may see a development preview at
-[dev.robostats.io](http://dev.robostats.io).
-
-~~Robostats can also be used as a remote control to send signals to connected
+Robostats can also be used as a remote control to send signals to connected
 devices of the same kind, when a device receives this signal it can alter its
-behaviour and provide feedback.~~
+behaviour and provide feedback.
 
 ![general](https://cloud.githubusercontent.com/assets/385670/5893726/9ff493ac-a4b4-11e4-8a94-d769a9d0efea.png)
 
+You may see a development preview at
+[dev.robostats.io](http://dev.robostats.io). Use `user@example.com` / `pass` to
+enter, we didn't have any security precautions, so please don't hack us :-).
+
 ## The API
+
+![api](https://cloud.githubusercontent.com/assets/385670/5886015/140d0e7c-a348-11e4-9f29-2e1599f98994.png)
 
 The [Robostats API](https://github.com/gophergala/robostats/tree/master/go/src/robostats/api)
 provides tools for creating categories for your devices (or robot *classes*).
@@ -35,15 +38,30 @@ API.
 
 ## Panel for analytics
 
-The analytics panel provides an overview of all registered devices, organized by it's class. It allows users to register new device classes and get the generated api key for each class.
+![frontend](https://cloud.githubusercontent.com/assets/385670/5886013/14073830-a348-11e4-961a-fdc9bde0b151.png)
 
-Selecting a device class users can drill down to a specific device, it's sesisons (any period of activity) and finally, to a graph that shows all the events generated from that drone in a particular sesion. 
+The analytics panel provides an overview of all registered devices, organized
+by it's class. It allows users to register new device classes and get the
+generated api key for each class.
 
 ![web-1](https://cloud.githubusercontent.com/assets/1133/5893820/7531d81a-a4b8-11e4-9316-7126455d99c5.png)
+
+Selecting a device class users can drill down to a specific device, it's
+session (any period of activity) and finally, to a graph that shows all the
+events generated from that drone in a particular sesion.
+
 ![web-2](https://cloud.githubusercontent.com/assets/1133/5893822/75379016-a4b8-11e4-864b-3d931eb8fcc0.png)
+
 ![web-3](https://cloud.githubusercontent.com/assets/1133/5893821/7533b572-a4b8-11e4-8885-5682af246575.png)
 
 ## Remote control
+
+![remote-control](https://cloud.githubusercontent.com/assets/385670/5886016/181bf8ca-a348-11e4-89bc-4463931da63d.png)
+
+The [remote
+control](https://github.com/gophergala/robostats/tree/master/android) is an
+application for Robostats that can be used to send signals to connected
+devices. Robostats only acts as a distribution hub for these commands.
 
 ## Internal documentation
 
