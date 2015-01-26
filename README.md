@@ -3,9 +3,9 @@
 Robotstats is a platform to gather and display statistics for robots and other
 connected devices.
 
-Robostats can also be used as a remote control to send signals to connected
+~~Robostats can also be used as a remote control to send signals to connected
 devices of the same kind, when a device receives this signal it can alter its
-behaviour and provide feedback.
+behaviour and provide feedback.~~
 
 ![general](https://cloud.githubusercontent.com/assets/385670/5893726/9ff493ac-a4b4-11e4-8a94-d769a9d0efea.png)
 
@@ -56,12 +56,29 @@ events generated from that drone in a particular sesion.
 
 ## Remote control
 
+The remove control as not finished on time, we left it here as a reference for
+future implementation.
+
 ![remote-control](https://cloud.githubusercontent.com/assets/385670/5886016/181bf8ca-a348-11e4-89bc-4463931da63d.png)
 
 The [remote
 control](https://github.com/gophergala/robostats/tree/master/android) is an
 application for Robostats that can be used to send signals to connected
 devices. Robostats only acts as a distribution hub for these commands.
+
+The WIP implementation of the remote controller was an Android app.
+
+![android-1](https://cloud.githubusercontent.com/assets/385670/5894130/685688ca-a4c2-11e4-9b4c-cf01e70a2961.png)
+
+You could use the app to log in into your account.
+
+![android-2](https://cloud.githubusercontent.com/assets/385670/5894129/6853c86a-a4c2-11e4-9d6f-639cc282b442.png)
+
+Using the remote control, you could choose a device class and send commands to
+all connected instances. These commands could vary, but we we're playing with a
+standard game-like pad.
+
+![android-3](https://cloud.githubusercontent.com/assets/385670/5894128/6852c7c6-a4c2-11e4-84a9-194a52eae3b4.png)
 
 ## Internal documentation
 
