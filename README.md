@@ -11,7 +11,7 @@ behaviour and provide feedback.
 
 You may see a development preview at
 [dev.robostats.io](http://dev.robostats.io). Use `user@example.com` / `pass` to
-enter, we didn't have any security precautions, so please don't hack us.
+enter, we didn't have any security precautions, so please don't hack us :-).
 
 ## The API
 
@@ -44,12 +44,14 @@ The analytics panel provides an overview of all registered devices, organized
 by it's class. It allows users to register new device classes and get the
 generated api key for each class.
 
+![web-1](https://cloud.githubusercontent.com/assets/1133/5893820/7531d81a-a4b8-11e4-9316-7126455d99c5.png)
+
 Selecting a device class users can drill down to a specific device, it's
-sesisons (any period of activity) and finally, to a graph that shows all the
+session (any period of activity) and finally, to a graph that shows all the
 events generated from that drone in a particular sesion.
 
-![web-1](https://cloud.githubusercontent.com/assets/1133/5893820/7531d81a-a4b8-11e4-9316-7126455d99c5.png)
 ![web-2](https://cloud.githubusercontent.com/assets/1133/5893822/75379016-a4b8-11e4-864b-3d931eb8fcc0.png)
+
 ![web-3](https://cloud.githubusercontent.com/assets/1133/5893821/7533b572-a4b8-11e4-8885-5682af246575.png)
 
 ## Remote control
