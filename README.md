@@ -14,6 +14,8 @@ behaviour and provide feedback.
 
 ## The API
 
+![api](https://cloud.githubusercontent.com/assets/385670/5886015/140d0e7c-a348-11e4-9f29-2e1599f98994.png)
+
 The [Robostats API](https://github.com/gophergala/robostats/tree/master/go/src/robostats/api)
 provides tools for creating categories for your devices (or robot *classes*).
 Each class has its own API key, connected devices can use this API key to
@@ -35,6 +37,8 @@ API.
 
 ## Panel for analytics
 
+![frontend](https://cloud.githubusercontent.com/assets/385670/5886013/14073830-a348-11e4-961a-fdc9bde0b151.png)
+
 The analytics panel provides an overview of all registered devices, organized
 by it's class. It allows users to register new device classes and get the
 generated api key for each class.
@@ -48,6 +52,8 @@ events generated from that drone in a particular sesion.
 ![web-3](https://cloud.githubusercontent.com/assets/1133/5893821/7533b572-a4b8-11e4-8885-5682af246575.png)
 
 ## Remote control
+
+![remote-control](https://cloud.githubusercontent.com/assets/385670/5886016/181bf8ca-a348-11e4-89bc-4463931da63d.png)
 
 The [remote
 control](https://github.com/gophergala/robostats/tree/master/android) is an
