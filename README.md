@@ -49,6 +49,11 @@ events generated from that drone in a particular sesion.
 
 ## Remote control
 
+The [remote
+control](https://github.com/gophergala/robostats/tree/master/android) is an
+application for Robostats that can be used to send signals to connected
+devices. Robostats only acts as a distribution hub for these commands.
+
 ## Internal documentation
 
 If you're interested on hacking the platform, you may want to read these
